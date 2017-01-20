@@ -1,25 +1,46 @@
 ﻿using Extensions.System;
 using Extensions.UnityEngine;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class GridGenerator : MonoBehaviour
 {
+    // Campos
     public SpriteRenderer wall;
 
     public float width;
     public float height;
     
-    private Grid2D<bool> grid = new Grid2D<bool>(96, 48);
-    
-    // Use this for initialization
-	void Start ()
+    private Grid2D<bool> grid = new Grid2D<bool>(32, 64);
+
+    public static event Action OnDestroyRequest = delegate { };
+
+    private float offset = 0.0f;
+    private float currentPosition = 0.0f;
+
+    // Propiedades
+    public float Offset
     {
-        this.GenerateMaze(8);
-        this.RenderMaze();
+        get { return this.offset; }
+        set { this.offset = value; }
+    }
+
+    public float CurrentPosition
+    {
+        get { return this.currentPosition; }
+        set { this.currentPosition = value; }
+    }
+
+    // Métodos
+	private void Start()
+    {
+        //this.grid.Wrapping = true;
+        //this.GenerateMaze(0);
+        //this.RenderMaze();
 	}
 
-    private void RenderMaze()
+    public void RenderMaze()
     {
         // Renderizar laberinto
         for (int i = 0; i < this.grid.Width; i++)
@@ -35,23 +56,39 @@ public class GridGenerator : MonoBehaviour
 
                     float hPosition = i.ToFloat().RemapTo(0, this.grid.Width - 1, -this.width * 0.5f, this.width * 0.5f);
                     float vPosition = j.ToFloat().RemapTo(0, this.grid.Height - 1, -this.height * 0.5f, this.height * 0.5f);
-                    wall.transform.position = new Vector2(hPosition, vPosition);
+                    wall.transform.localPosition = new Vector2(hPosition, vPosition);
                     wall.transform.localScale = Vector3.one * itemWidth;
+                    wall.transform.SetParent(this.transform, false);
                 }
             }
         }
     }
 
-    private void GenerateMaze(int iterations)
+    public void GenerateMaze(float gameWorldPosition, float perlinHeight, int iterations)
     {
+        this.transform.DestroyChildren();
+
         // Paso inicial
         for (int i = 0; i < this.grid.Width; i++)
         {
             for (int j = 0; j < this.grid.Height; j++)
             {
-                grid.SetItem(i, j, RandomUtil.Chance(0.48f));
-                if (j.InRange(0, 3) || j.InRange(grid.Height - 1, grid.Height - 4))
+                grid.SetItem(i, j, RandomUtil.Chance(0.52f));
+                if (j.InRange(0, 2) || j.InRange(grid.Height - 1, grid.Height - 3))
                     grid.SetItem(i, j, true);
+            }
+        }
+        
+        // Perlin noise
+        for (int i = 0; i < this.grid.Width; i++)
+        {
+            float xPos = i.ToFloat().RemapTo(0, this.grid.Width - 1, this.width * -0.5f, this.width * 0.5f);
+            float noiseValue = Mathf.PerlinNoise(xPos + gameWorldPosition, perlinHeight);
+            int index = (int)(noiseValue.RemapTo(0.0f, 1.0f, 4, grid.Height - 5));
+
+            for (int r = -2; r <= 2; r++)
+            {
+                grid.SetItem(i, index + r, false);
             }
         }
 
@@ -78,13 +115,15 @@ public class GridGenerator : MonoBehaviour
                     grid.SetItem(i, j, currentItem);
                 }
             }
-
         }
+
+        
     }
 	
 	// Update is called once per frame
-	void Update () {
-		
+	private void Update()
+    {
+        //this.transform.SetPositionX(this.offset - this.currentPosition);
 	}
 
     private int CountWalls(bool[] wallList)
