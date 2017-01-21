@@ -9,6 +9,7 @@ public class GridGenerator : MonoBehaviour
     // Campos
     public SpriteRenderer wall;
     public EnemyScript enemy;
+    public List<Sprite> tiles;
 
     public float width;
     public float height;
