@@ -74,7 +74,7 @@ public class GridGenerator : MonoBehaviour
                     float hPosition = i.ToFloat().RemapTo(0, this.grid.Width - 1, -this.width * 0.5f, this.width * 0.5f);
                     float vPosition = j.ToFloat().RemapTo(0, this.grid.Height - 1, -this.height * 0.5f, this.height * 0.5f);
                     wall.transform.localPosition = new Vector2(hPosition, vPosition);
-					wall.transform.localScale = new Vector2(itemWidth, itemHeight);
+					wall.transform.localScale = new Vector3(itemWidth, itemHeight, 1.0f);
                     wall.transform.SetParent(this.transform, false);
 
 					wall.gameObject.layer = LayerMask.NameToLayer ("sonar");

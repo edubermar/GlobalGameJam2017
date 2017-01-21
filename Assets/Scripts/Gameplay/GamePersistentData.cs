@@ -1,3 +1,4 @@
+using Extensions.System;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
@@ -17,6 +18,9 @@ public class GamePersistentData
     [SerializeField]
     private bool soundActive;
 
+    [SerializeField]
+    private float distanceRecord;
+
     // ---- ---- ---- ---- ---- ---- ---- ----
     // Propiedades
     // ---- ---- ---- ---- ---- ---- ---- ----
@@ -32,6 +36,12 @@ public class GamePersistentData
         internal set { this.soundActive = value; }
     }
 
+    public float DistanceRecord
+    {
+        get { return this.distanceRecord; }
+        internal set { this.distanceRecord = value.ClampToPositive(); }
+    }
+
     // ---- ---- ---- ---- ---- ---- ---- ----
     // Constructores
     // ---- ---- ---- ---- ---- ---- ---- ----
@@ -42,6 +52,8 @@ public class GamePersistentData
     {
         this.musicActive = true;
         this.soundActive = true;
+
+        this.distanceRecord = 0.0f;
     }
 
 }
