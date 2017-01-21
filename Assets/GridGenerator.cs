@@ -10,12 +10,12 @@ public class GridGenerator : MonoBehaviour
     // Campos
     public SpriteRenderer wall;
     public EnemyScript enemy;
-    public List<Sprite> tiles;
+    public List<SpriteRenderer> tiles;
 
     public float width;
     public float height;
     
-    private Grid2D<bool> grid = new Grid2D<bool>(32, 64);
+	private Grid2D<bool> grid = new Grid2D<bool>(32, 64);
     //private Grid2D<bool> gridAux = new Grid2D<bool>(32, 64);
 
     public static event Action OnDestroyRequest = delegate { };
@@ -54,15 +54,27 @@ public class GridGenerator : MonoBehaviour
             {
                 if (this.grid.GetItem(i, j))
                 {
-                    var wall = GameObject.Instantiate<SpriteRenderer>(this.wall);
+					int flags = 0;
+					if (this.grid.GetItem (i, j + step))
+						flags += 1;
+					if (this.grid.GetItem (i + step, j))
+						flags += 2;
+					if (this.grid.GetItem (i, j - step))
+						flags += 4;
+					if (this.grid.GetItem (i - step, j))
+						flags += 8;
+					
+					var wall = GameObject.Instantiate<SpriteRenderer>(this.tiles[flags]);
 
-                    float cameraSize = Camera.main.orthographicSize;
-                    float itemWidth = this.width / this.grid.Width;
+                    //float cameraSize = Camera.main.orthographicSize;
+                    
+					float itemWidth = (this.width / this.grid.Width) * step;
+					float itemHeight = (this.height / this.grid.Height) * step;
 
                     float hPosition = i.ToFloat().RemapTo(0, this.grid.Width - 1, -this.width * 0.5f, this.width * 0.5f);
                     float vPosition = j.ToFloat().RemapTo(0, this.grid.Height - 1, -this.height * 0.5f, this.height * 0.5f);
                     wall.transform.localPosition = new Vector2(hPosition, vPosition);
-                    wall.transform.localScale = Vector3.one * itemWidth;
+					wall.transform.localScale = new Vector2(itemWidth, itemHeight);
                     wall.transform.SetParent(this.transform, false);
                 }
             }
@@ -80,7 +92,7 @@ public class GridGenerator : MonoBehaviour
         {
             for (int j = 0; j < this.grid.Height; j++)
             {
-                grid.SetItem(i, j, RandomUtil.Chance(0.52f));
+                grid.SetItem(i, j, RandomUtil.Chance(0.44f));
                 if (j.InRange(0, 2) || j.InRange(grid.Height - 1, grid.Height - 3))
                     grid.SetItem(i, j, true);
             }
@@ -120,7 +132,7 @@ public class GridGenerator : MonoBehaviour
             }
         }
 
-        // Automata celular
+        // Autómata celular
         for (int iteration = 0; iteration < iterations; iteration++)
         {
             Grid2D<bool> aux = new Grid2D<bool>(this.grid.Width, this.grid.Height);
@@ -131,7 +143,6 @@ public class GridGenerator : MonoBehaviour
                 int holeCount = 0;
                 for (int j = 0; j < this.grid.Height; j++)
                 {
-                    
                     bool[] neigbours = this.grid.ChessboardNeighbours(i, j);
                     int wallCount = this.CountWalls(neigbours);
                     bool currentItem = this.grid.GetItem(i, j);
@@ -146,7 +157,7 @@ public class GridGenerator : MonoBehaviour
                     else // Current es espacio
                     {
                         holeCount++;
-                        if (wallCount > 4) aux.SetItem(i, j, true);
+                        if (wallCount > 3) aux.SetItem(i, j, true);
                         //else aux.SetItem(i, j, false);
                     }
 
