@@ -147,11 +147,11 @@ public class GridGenerator : MonoBehaviour
                         else aux.SetItem(i, j, false);
                     }
 
-                    List<bool> neigboursList = new List<bool>(neigbours);
-                    neigboursList.RemoveAt(0);
-                    neigboursList.RemoveAt(2);
-                    neigboursList.RemoveAt(5);
-                    neigboursList.RemoveAt(7);
+                    List<bool> neigboursList = new List<bool>();
+                    neigboursList.Add(neigbours[1]);
+                    neigboursList.Add(neigbours[3]);
+                    neigboursList.Add(neigbours[4]);
+                    neigboursList.Add(neigbours[6]);
 
                     if (holeCount > 5 && wallCount == 1 && RandomUtil.Chance(0.003f))
                     {
@@ -164,7 +164,7 @@ public class GridGenerator : MonoBehaviour
                         enemy.transform.localScale = new Vector3(0.12f, 0.12f, 0.12f);
                         enemy.transform.SetParent(this.transform, false);
 
-                        switch (EnemyCase(neigboursList))
+                        /*switch (EnemyCase(neigboursList))
                         {
                             // El enemigo tendrá un muro arriba
                             case 0:
@@ -180,7 +180,7 @@ public class GridGenerator : MonoBehaviour
                                 break;
                             default:
                                 break;
-                        }
+                        }*/
                     }
 
                 }
