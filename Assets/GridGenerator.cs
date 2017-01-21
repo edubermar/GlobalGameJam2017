@@ -76,6 +76,8 @@ public class GridGenerator : MonoBehaviour
                     wall.transform.localPosition = new Vector2(hPosition, vPosition);
 					wall.transform.localScale = new Vector2(itemWidth, itemHeight);
                     wall.transform.SetParent(this.transform, false);
+
+					wall.gameObject.layer = LayerMask.NameToLayer ("sonar");
                 }
             }
         }
@@ -177,6 +179,8 @@ public class GridGenerator : MonoBehaviour
                         enemy.transform.localPosition = new Vector2(hPosition, vPosition);
                         enemy.transform.localScale = new Vector3(0.12f, 0.12f, 0.12f);
                         enemy.transform.SetParent(this.transform, false);
+
+						enemy.gameObject.layer = LayerMask.NameToLayer ("sonar");
 
                         /*switch (EnemyCase(neigboursList))
                         {
