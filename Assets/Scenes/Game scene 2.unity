@@ -233,7 +233,8 @@ MonoBehaviour:
   lowerLimit: -3
   upperLimit: 3
   movementSpeed: 0.5
-  iterations: 6
+  iterations: 4
+  downsample: 1
   gridList:
   - {fileID: 1113686930}
   - {fileID: 1176374450}
@@ -302,6 +303,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wall: {fileID: 212212050194936244, guid: 3a914971fa0d87348ab3445cec573605, type: 2}
   enemy: {fileID: 114548372779782778, guid: 8ea85e3b447ae8244b80644e2abd4556, type: 2}
+  tiles:
+  - {fileID: 212097932539969920, guid: a1d41e429fa667d42bc185a8c0c6e5ae, type: 2}
+  - {fileID: 212939724774973902, guid: 869f53164bcface4887708c11bd1dc3d, type: 2}
+  - {fileID: 212024544806992738, guid: 83738e95f77a1f54a84f0de476d2ed1c, type: 2}
+  - {fileID: 212284052953515476, guid: da9926f82801ee645ab6ca0a850661b6, type: 2}
+  - {fileID: 212294532542481968, guid: 8eb103d294db9874c839f15bdeaf06eb, type: 2}
+  - {fileID: 212881505082203962, guid: 5c58a7f26da978b40aa6291f1a863b43, type: 2}
+  - {fileID: 212120213250909786, guid: a2dd2f3c27f0cc14cb5ef211ab2b9420, type: 2}
+  - {fileID: 212571283701460532, guid: 1e753e76a5a4ac2459428569046cd454, type: 2}
+  - {fileID: 212077587156102164, guid: d1bb82d3b135c914c8462c691a2d65c3, type: 2}
+  - {fileID: 212864269227699910, guid: 555cbc03af076dc40a8c447ed51cef5e, type: 2}
+  - {fileID: 212101834094723510, guid: 55ea9c696da134c4e928a07a2035232f, type: 2}
+  - {fileID: 212967311682029592, guid: a43040716b2b5b14caff98c4d431cfc0, type: 2}
+  - {fileID: 212706291598427564, guid: ec69179e8efc67e4496ff2e50a3b9312, type: 2}
+  - {fileID: 212087250588682994, guid: a37f207ff86225643ac02039dbe35e45, type: 2}
+  - {fileID: 212224320917635798, guid: 02768099e05832c41a5c2cf95b48d977, type: 2}
+  - {fileID: 212707867305149058, guid: 2bbd2189a694a314d8d621768b97fc8f, type: 2}
   width: 1
   height: 2.08
 --- !u!1 &1176374448
@@ -346,6 +364,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wall: {fileID: 212212050194936244, guid: 3a914971fa0d87348ab3445cec573605, type: 2}
   enemy: {fileID: 114548372779782778, guid: 8ea85e3b447ae8244b80644e2abd4556, type: 2}
+  tiles:
+  - {fileID: 212097932539969920, guid: a1d41e429fa667d42bc185a8c0c6e5ae, type: 2}
+  - {fileID: 212939724774973902, guid: 869f53164bcface4887708c11bd1dc3d, type: 2}
+  - {fileID: 212024544806992738, guid: 83738e95f77a1f54a84f0de476d2ed1c, type: 2}
+  - {fileID: 212284052953515476, guid: da9926f82801ee645ab6ca0a850661b6, type: 2}
+  - {fileID: 212294532542481968, guid: 8eb103d294db9874c839f15bdeaf06eb, type: 2}
+  - {fileID: 212881505082203962, guid: 5c58a7f26da978b40aa6291f1a863b43, type: 2}
+  - {fileID: 212120213250909786, guid: a2dd2f3c27f0cc14cb5ef211ab2b9420, type: 2}
+  - {fileID: 212571283701460532, guid: 1e753e76a5a4ac2459428569046cd454, type: 2}
+  - {fileID: 212077587156102164, guid: d1bb82d3b135c914c8462c691a2d65c3, type: 2}
+  - {fileID: 212864269227699910, guid: 555cbc03af076dc40a8c447ed51cef5e, type: 2}
+  - {fileID: 212101834094723510, guid: 55ea9c696da134c4e928a07a2035232f, type: 2}
+  - {fileID: 212967311682029592, guid: a43040716b2b5b14caff98c4d431cfc0, type: 2}
+  - {fileID: 212706291598427564, guid: ec69179e8efc67e4496ff2e50a3b9312, type: 2}
+  - {fileID: 212087250588682994, guid: a37f207ff86225643ac02039dbe35e45, type: 2}
+  - {fileID: 212224320917635798, guid: 02768099e05832c41a5c2cf95b48d977, type: 2}
+  - {fileID: 212707867305149058, guid: 2bbd2189a694a314d8d621768b97fc8f, type: 2}
   width: 1
   height: 2.08
 --- !u!1 &1393761635
@@ -477,6 +512,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wall: {fileID: 212212050194936244, guid: 3a914971fa0d87348ab3445cec573605, type: 2}
   enemy: {fileID: 114548372779782778, guid: 8ea85e3b447ae8244b80644e2abd4556, type: 2}
+  tiles:
+  - {fileID: 212097932539969920, guid: a1d41e429fa667d42bc185a8c0c6e5ae, type: 2}
+  - {fileID: 212939724774973902, guid: 869f53164bcface4887708c11bd1dc3d, type: 2}
+  - {fileID: 212024544806992738, guid: 83738e95f77a1f54a84f0de476d2ed1c, type: 2}
+  - {fileID: 212284052953515476, guid: da9926f82801ee645ab6ca0a850661b6, type: 2}
+  - {fileID: 212294532542481968, guid: 8eb103d294db9874c839f15bdeaf06eb, type: 2}
+  - {fileID: 212881505082203962, guid: 5c58a7f26da978b40aa6291f1a863b43, type: 2}
+  - {fileID: 212120213250909786, guid: a2dd2f3c27f0cc14cb5ef211ab2b9420, type: 2}
+  - {fileID: 212571283701460532, guid: 1e753e76a5a4ac2459428569046cd454, type: 2}
+  - {fileID: 212077587156102164, guid: d1bb82d3b135c914c8462c691a2d65c3, type: 2}
+  - {fileID: 212864269227699910, guid: 555cbc03af076dc40a8c447ed51cef5e, type: 2}
+  - {fileID: 212101834094723510, guid: 55ea9c696da134c4e928a07a2035232f, type: 2}
+  - {fileID: 212967311682029592, guid: a43040716b2b5b14caff98c4d431cfc0, type: 2}
+  - {fileID: 212706291598427564, guid: ec69179e8efc67e4496ff2e50a3b9312, type: 2}
+  - {fileID: 212087250588682994, guid: a37f207ff86225643ac02039dbe35e45, type: 2}
+  - {fileID: 212224320917635798, guid: 02768099e05832c41a5c2cf95b48d977, type: 2}
+  - {fileID: 212707867305149058, guid: 2bbd2189a694a314d8d621768b97fc8f, type: 2}
   width: 1
   height: 2.08
 --- !u!1 &1490785295
@@ -521,6 +573,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wall: {fileID: 212212050194936244, guid: 3a914971fa0d87348ab3445cec573605, type: 2}
   enemy: {fileID: 114548372779782778, guid: 8ea85e3b447ae8244b80644e2abd4556, type: 2}
+  tiles:
+  - {fileID: 212097932539969920, guid: a1d41e429fa667d42bc185a8c0c6e5ae, type: 2}
+  - {fileID: 212939724774973902, guid: 869f53164bcface4887708c11bd1dc3d, type: 2}
+  - {fileID: 212024544806992738, guid: 83738e95f77a1f54a84f0de476d2ed1c, type: 2}
+  - {fileID: 212284052953515476, guid: da9926f82801ee645ab6ca0a850661b6, type: 2}
+  - {fileID: 212294532542481968, guid: 8eb103d294db9874c839f15bdeaf06eb, type: 2}
+  - {fileID: 212881505082203962, guid: 5c58a7f26da978b40aa6291f1a863b43, type: 2}
+  - {fileID: 212120213250909786, guid: a2dd2f3c27f0cc14cb5ef211ab2b9420, type: 2}
+  - {fileID: 212571283701460532, guid: 1e753e76a5a4ac2459428569046cd454, type: 2}
+  - {fileID: 212077587156102164, guid: d1bb82d3b135c914c8462c691a2d65c3, type: 2}
+  - {fileID: 212864269227699910, guid: 555cbc03af076dc40a8c447ed51cef5e, type: 2}
+  - {fileID: 212101834094723510, guid: 55ea9c696da134c4e928a07a2035232f, type: 2}
+  - {fileID: 212967311682029592, guid: a43040716b2b5b14caff98c4d431cfc0, type: 2}
+  - {fileID: 212706291598427564, guid: ec69179e8efc67e4496ff2e50a3b9312, type: 2}
+  - {fileID: 212087250588682994, guid: a37f207ff86225643ac02039dbe35e45, type: 2}
+  - {fileID: 212224320917635798, guid: 02768099e05832c41a5c2cf95b48d977, type: 2}
+  - {fileID: 212707867305149058, guid: 2bbd2189a694a314d8d621768b97fc8f, type: 2}
   width: 1
   height: 2.08
 --- !u!1 &1909503871
@@ -565,6 +634,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wall: {fileID: 212212050194936244, guid: 3a914971fa0d87348ab3445cec573605, type: 2}
   enemy: {fileID: 114548372779782778, guid: 8ea85e3b447ae8244b80644e2abd4556, type: 2}
+  tiles:
+  - {fileID: 212097932539969920, guid: a1d41e429fa667d42bc185a8c0c6e5ae, type: 2}
+  - {fileID: 212939724774973902, guid: 869f53164bcface4887708c11bd1dc3d, type: 2}
+  - {fileID: 212024544806992738, guid: 83738e95f77a1f54a84f0de476d2ed1c, type: 2}
+  - {fileID: 212284052953515476, guid: da9926f82801ee645ab6ca0a850661b6, type: 2}
+  - {fileID: 212294532542481968, guid: 8eb103d294db9874c839f15bdeaf06eb, type: 2}
+  - {fileID: 212881505082203962, guid: 5c58a7f26da978b40aa6291f1a863b43, type: 2}
+  - {fileID: 212120213250909786, guid: a2dd2f3c27f0cc14cb5ef211ab2b9420, type: 2}
+  - {fileID: 212571283701460532, guid: 1e753e76a5a4ac2459428569046cd454, type: 2}
+  - {fileID: 212077587156102164, guid: d1bb82d3b135c914c8462c691a2d65c3, type: 2}
+  - {fileID: 212864269227699910, guid: 555cbc03af076dc40a8c447ed51cef5e, type: 2}
+  - {fileID: 212101834094723510, guid: 55ea9c696da134c4e928a07a2035232f, type: 2}
+  - {fileID: 212967311682029592, guid: a43040716b2b5b14caff98c4d431cfc0, type: 2}
+  - {fileID: 212706291598427564, guid: ec69179e8efc67e4496ff2e50a3b9312, type: 2}
+  - {fileID: 212087250588682994, guid: a37f207ff86225643ac02039dbe35e45, type: 2}
+  - {fileID: 212224320917635798, guid: 02768099e05832c41a5c2cf95b48d977, type: 2}
+  - {fileID: 212707867305149058, guid: 2bbd2189a694a314d8d621768b97fc8f, type: 2}
   width: 1
   height: 2.08
 --- !u!1 &2037260144
@@ -596,6 +682,23 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wall: {fileID: 212212050194936244, guid: 3a914971fa0d87348ab3445cec573605, type: 2}
   enemy: {fileID: 114548372779782778, guid: 8ea85e3b447ae8244b80644e2abd4556, type: 2}
+  tiles:
+  - {fileID: 212097932539969920, guid: a1d41e429fa667d42bc185a8c0c6e5ae, type: 2}
+  - {fileID: 212939724774973902, guid: 869f53164bcface4887708c11bd1dc3d, type: 2}
+  - {fileID: 212024544806992738, guid: 83738e95f77a1f54a84f0de476d2ed1c, type: 2}
+  - {fileID: 212284052953515476, guid: da9926f82801ee645ab6ca0a850661b6, type: 2}
+  - {fileID: 212294532542481968, guid: 8eb103d294db9874c839f15bdeaf06eb, type: 2}
+  - {fileID: 212881505082203962, guid: 5c58a7f26da978b40aa6291f1a863b43, type: 2}
+  - {fileID: 212120213250909786, guid: a2dd2f3c27f0cc14cb5ef211ab2b9420, type: 2}
+  - {fileID: 212571283701460532, guid: 1e753e76a5a4ac2459428569046cd454, type: 2}
+  - {fileID: 212077587156102164, guid: d1bb82d3b135c914c8462c691a2d65c3, type: 2}
+  - {fileID: 212864269227699910, guid: 555cbc03af076dc40a8c447ed51cef5e, type: 2}
+  - {fileID: 212101834094723510, guid: 55ea9c696da134c4e928a07a2035232f, type: 2}
+  - {fileID: 212967311682029592, guid: a43040716b2b5b14caff98c4d431cfc0, type: 2}
+  - {fileID: 212706291598427564, guid: ec69179e8efc67e4496ff2e50a3b9312, type: 2}
+  - {fileID: 212087250588682994, guid: a37f207ff86225643ac02039dbe35e45, type: 2}
+  - {fileID: 212224320917635798, guid: 02768099e05832c41a5c2cf95b48d977, type: 2}
+  - {fileID: 212707867305149058, guid: 2bbd2189a694a314d8d621768b97fc8f, type: 2}
   width: 1
   height: 2.08
 --- !u!4 &2037260146
