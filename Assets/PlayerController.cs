@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
         //this.transform.Translate(input * Time.deltaTime);
         
         this.playerRigidbody.AddForce(input, ForceMode2D.Impulse);
-        this.playerAnimator.SetFloat("HorizontalSpeed", input.x);
+        this.playerAnimator.SetFloat("Horizontal speed", input.x);
         this.transform.SetRotationEulerZ(-input.x * 15.0f);
 
         PlayerController.OnPlayerMoved(this.transform.position);
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
             this.GetComponent<SpriteRenderer>().color = Color.red;
             Vector3 repulsionVector = this.transform.position - (Vector3)other.contacts[0].point;
 
-            float force = (200.0f + (100.0f - this.life) * 10.0f) * 0.020f;
+            float force = (200.0f + (100.0f - this.life) * 10.0f) * 0.008f;
             this.playerRigidbody.AddForce(repulsionVector.normalized * force, ForceMode2D.Impulse);
             this.StartCoroutine(this.DragAdjustmentCorroutine(0.5f));
         }
