@@ -167,7 +167,7 @@ public class GridGenerator : MonoBehaviour
                     neigboursList.Add(neigbours[4]);
                     neigboursList.Add(neigbours[6]);
 
-                    if (holeCount > 5 && wallCount == 1 && RandomUtil.Chance(0.003f)&& j > 15 && j < this.grid.Height - 15)
+                    if (holeCount > 5 && wallCount == 1 && RandomUtil.Chance(0.001f)&& j > 15 && j < this.grid.Height - 15)
                     {
                         var enemy = GameObject.Instantiate<EnemyScript>(this.enemy);
 
