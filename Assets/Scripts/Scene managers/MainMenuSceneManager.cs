@@ -24,6 +24,8 @@ public class MainMenuSceneManager : MonoBehaviour
     // Métodos de MonoBehaviour
     private void Awake()
     {
+        GameManager.Instance.CurrentPoints = 0;
+
         // Reproducir música
         AudioManager.Instance.MusicVolume = 0.5f;
         AudioManager.Instance.PlayMusic(this.mainMenuMusic, 1.0f);
@@ -37,8 +39,14 @@ public class MainMenuSceneManager : MonoBehaviour
 
     public void StartGame()
     {
-        SceneManager.LoadScene(1);
+		this.StartCoroutine(this.StartGameCorroutine());
     }
+
+	public IEnumerator StartGameCorroutine()
+	{
+		yield return new WaitForSeconds(0.5f);
+		SceneManager.LoadScene(1);
+	}
 
     public void SwitchToCanvasGroup(int index)
     {
