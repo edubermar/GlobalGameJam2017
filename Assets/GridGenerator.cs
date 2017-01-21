@@ -42,12 +42,13 @@ public class GridGenerator : MonoBehaviour
         //this.RenderMaze();
 	}
 
-    public void RenderMaze()
+    public void RenderMaze(int downsample)
     {
         // Renderizar laberinto
-        for (int i = 0; i < this.grid.Width; i++)
+        int step = 1 << downsample;
+        for (int i = 0; i < this.grid.Width; i += step)
         {
-            for (int j = 0; j < this.grid.Height; j++)
+            for (int j = 0; j < this.grid.Height; j += step)
             {
                 if (this.grid.GetItem(i, j))
                 {
@@ -90,7 +91,7 @@ public class GridGenerator : MonoBehaviour
             float noiseValue = Mathf.PerlinNoise(xPos + gameWorldPosition, perlinHeight);
             int index = (int)(noiseValue.RemapTo(0.0f, 1.0f, 4, grid.Height - 5));
 
-            for (int r = -2; r <= 2; r++)
+            for (int r = -4; r <= 4; r++)
             {
                 grid.SetItem(i, index + r, false);
             }
@@ -109,7 +110,7 @@ public class GridGenerator : MonoBehaviour
                 float noiseValue = Mathf.PerlinNoise(xPos, yPos);
                 int index = (int)(noiseValue.RemapTo(0.0f, 1.0f, 4, grid.Height - 5));
 
-                for (int r = -2; r <= 2; r++)
+                for (int r = -4; r <= 4; r++)
                 {
                     grid.SetItem(i, index + r, false);
                 }
