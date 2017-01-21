@@ -8,6 +8,7 @@ public class GridGenerator : MonoBehaviour
 {
     // Campos
     public SpriteRenderer wall;
+    public EnemyScript enemy;
 
     public float width;
     public float height;
@@ -124,8 +125,10 @@ public class GridGenerator : MonoBehaviour
 
             for (int i = 0; i < this.grid.Width; i++)
             {
+                int holeCount = 0;
                 for (int j = 0; j < this.grid.Height; j++)
                 {
+                    
                     bool[] neigbours = this.grid.ChessboardNeighbours(i, j);
                     int wallCount = this.CountWalls(neigbours);
                     bool currentItem = this.grid.GetItem(i, j);
@@ -137,10 +140,23 @@ public class GridGenerator : MonoBehaviour
                     }
                     else // Current es espacio
                     {
+                        holeCount++;
                         if (wallCount > 4) aux.SetItem(i, j, true);
                         else aux.SetItem(i, j, false);
                     }
+                    if (holeCount > 5 && wallCount == 1)
+                    {
+                        var enemy = GameObject.Instantiate<EnemyScript>(this.enemy);
+
+                        float hPosition = i.ToFloat().RemapTo(0, this.grid.Width - 1, -this.width * 0.5f, this.width * 0.5f);
+                        float vPosition = j.ToFloat().RemapTo(0, this.grid.Height - 1, -this.height * 0.5f, this.height * 0.5f);
+
+                        enemy.transform.position = new Vector2(hPosition, vPosition);
+                        enemy.transform.localScale = new Vector3(0.12f, 0.12f, 0.12f);
+                    }
+
                 }
+                holeCount = 0;
             }
             this.grid = aux;
         }   
@@ -162,4 +178,5 @@ public class GridGenerator : MonoBehaviour
         }
         return total;
     }
+
 }
