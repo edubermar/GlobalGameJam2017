@@ -93,7 +93,7 @@ public class GridGenerator : MonoBehaviour
             float noiseValue = Mathf.PerlinNoise(xPos + gameWorldPosition, perlinHeight);
             int index = (int)(noiseValue.RemapTo(0.0f, 1.0f, 4, grid.Height - 5));
 
-            for (int r = -4; r <= 4; r++)
+            for (int r = -6; r <= 6; r++)
             {
                 grid.SetItem(i, index + r, false);
             }
@@ -112,7 +112,7 @@ public class GridGenerator : MonoBehaviour
                 float noiseValue = Mathf.PerlinNoise(xPos, yPos);
                 int index = (int)(noiseValue.RemapTo(0.0f, 1.0f, 4, grid.Height - 5));
 
-                for (int r = -4; r <= 4; r++)
+                for (int r = -6; r <= 6; r++)
                 {
                     grid.SetItem(i, index + r, false);
                 }
@@ -156,7 +156,7 @@ public class GridGenerator : MonoBehaviour
                     neigboursList.Add(neigbours[4]);
                     neigboursList.Add(neigbours[6]);
 
-                    if (holeCount > 5 && wallCount == 1 && RandomUtil.Chance(0.003f))
+                    if (holeCount > 5 && wallCount == 1 && RandomUtil.Chance(0.003f)&& j > 15 && j < this.grid.Height - 15)
                     {
                         var enemy = GameObject.Instantiate<EnemyScript>(this.enemy);
 

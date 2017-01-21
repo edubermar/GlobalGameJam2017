@@ -25,7 +25,7 @@ public class GridController : MonoBehaviour
         foreach (var grid in this.gridList)
         {
             grid.GenerateMaze(this.worldPosition, this.perlinHeight, iterations);
-			grid.RenderMaze(0);
+			grid.RenderMaze(1);
         }
     }
     
@@ -45,7 +45,7 @@ public class GridController : MonoBehaviour
             {
                 grid.transform.TranslateByAxis(TransformAxis.X, this.upperLimit - this.lowerLimit);
                 grid.GenerateMaze(this.worldPosition, this.perlinHeight, iterations);
-                grid.RenderMaze(0);
+                grid.RenderMaze(1);
             }
         }
 	}
