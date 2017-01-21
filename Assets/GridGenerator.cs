@@ -133,7 +133,7 @@ public class GridGenerator : MonoBehaviour
                     bool[] neigbours = this.grid.ChessboardNeighbours(i, j);
                     int wallCount = this.CountWalls(neigbours);
                     bool currentItem = this.grid.GetItem(i, j);
-                    
+
                     if (currentItem) // Current item es pared
                     {
                         if (wallCount < 4) aux.SetItem(i, j, false);
@@ -145,6 +145,13 @@ public class GridGenerator : MonoBehaviour
                         if (wallCount > 4) aux.SetItem(i, j, true);
                         else aux.SetItem(i, j, false);
                     }
+
+                    List<bool> neigboursList = new List<bool>(neigbours);
+                    neigboursList.RemoveAt(0);
+                    neigboursList.RemoveAt(2);
+                    neigboursList.RemoveAt(5);
+                    neigboursList.RemoveAt(7);
+
                     if (holeCount > 5 && wallCount == 1 && RandomUtil.Chance(0.003f))
                     {
                         var enemy = GameObject.Instantiate<EnemyScript>(this.enemy);
@@ -155,6 +162,24 @@ public class GridGenerator : MonoBehaviour
                         enemy.transform.localPosition = new Vector2(hPosition, vPosition);
                         enemy.transform.localScale = new Vector3(0.12f, 0.12f, 0.12f);
                         enemy.transform.SetParent(this.transform, false);
+
+                        switch (EnemyCase(neigboursList))
+                        {
+                            // El enemigo tendrá un muro arriba
+                            case 0:
+                                break;
+                            // El enemigo tendrá un muro a la izquierda
+                            case 1:
+                                break;
+                            // El enemigo tendrá un muro a la derecha
+                            case 2:
+                                break;
+                            // El enemigo tendrá un muro abajo
+                            case 3:
+                                break;
+                            default:
+                                break;
+                        }
                     }
 
                 }
@@ -179,6 +204,36 @@ public class GridGenerator : MonoBehaviour
             if (item) total++;
         }
         return total;
+    }
+
+    private int EnemyCase(List<bool> neightbours)
+    {
+        int res = 0;
+
+        if (neightbours.ToArray()[0])
+        {
+            res = 0;
+        }
+        else
+        {
+            if (neightbours.ToArray()[1])
+            {
+                res = 1;
+            }
+            else
+            {
+                if (neightbours.ToArray()[2])
+                {
+                    res = 2;
+                }else
+                {
+                    res = 3;
+                }
+            }
+
+        }
+
+        return res;
     }
 
 }
