@@ -1,4 +1,5 @@
 ﻿using Extensions.System;
+using Extensions.Tuple;
 using Extensions.UnityEngine;
 using System;
 using System.Collections.Generic;
@@ -137,14 +138,16 @@ public class GridGenerator : MonoBehaviour
 
                     if (currentItem) // Current item es pared
                     {
-                        if (wallCount < 4) aux.SetItem(i, j, false);
-                        else aux.SetItem(i, j, true);
+                        //if (wallCount < 4) aux.SetItem(i, j, false);
+                        //else aux.SetItem(i, j, true);
+						if (!(wallCount < 4))
+							aux.SetItem(i, j, true);
                     }
                     else // Current es espacio
                     {
                         holeCount++;
                         if (wallCount > 4) aux.SetItem(i, j, true);
-                        else aux.SetItem(i, j, false);
+                        //else aux.SetItem(i, j, false);
                     }
 
                     List<bool> neigboursList = new List<bool>();
@@ -189,6 +192,82 @@ public class GridGenerator : MonoBehaviour
             this.grid = aux;
         }   
         
+		/*
+        // Flood fill
+        HashSet<Point2D> closedPoints = new HashSet<Point2D>();
+        for (int i = 0; i < this.grid.Width; i++)
+        {
+            for (int j = 0; j < this.grid.Height; j++)
+            {
+                if (!closedPoints.Contains(new Point2D(i, j)))
+                {
+                    Queue<Point2D> queuePoints = new Queue<Point2D>();
+                    List<Point2D> changingPoints = new List<Point2D>();
+
+                    var pt = new Point2D(i, j);
+                    queuePoints.Enqueue(pt);
+                    closedPoints.Add(pt);
+                    changingPoints.Add(pt);
+
+                    int pointCount = 1;
+                    bool pointState = this.grid[i, j];
+
+                    while (queuePoints.Count > 0)
+                    {
+                        var point = queuePoints.Dequeue();
+
+                        var nPoint = new Point2D(point.X - 1, point.Y);
+                        if (point.X > 0 && this.grid[nPoint] == pointState && !closedPoints.Contains(nPoint))
+                        {
+                            queuePoints.Enqueue(nPoint);
+                            closedPoints.Add(nPoint);
+                            changingPoints.Add(nPoint);
+                            pointCount++;
+                        }
+
+                        nPoint = new Point2D(point.X + 1, point.Y);
+                        if (point.X < this.grid.Width - 1 && this.grid[nPoint] == pointState && !closedPoints.Contains(nPoint))
+                        {
+                            queuePoints.Enqueue(nPoint);
+                            closedPoints.Add(nPoint);
+                            changingPoints.Add(nPoint);
+                            pointCount++;
+                        }
+                        
+                        nPoint = new Point2D(point.X, point.Y - 1);
+                        if (point.Y > 0 && this.grid[nPoint] == pointState && !closedPoints.Contains(nPoint))
+                        {
+                            queuePoints.Enqueue(nPoint);
+                            closedPoints.Add(nPoint);
+                            changingPoints.Add(nPoint);
+                            pointCount++;
+                        }
+                        
+                        nPoint = new Point2D(point.X, point.Y + 1);
+                        if (point.Y < this.grid.Height - 1 && this.grid[nPoint] == pointState && !closedPoints.Contains(nPoint))
+                        {
+                            queuePoints.Enqueue(nPoint);
+                            closedPoints.Add(nPoint);
+                            changingPoints.Add(nPoint);
+                            pointCount++;
+                        }
+
+                        //if (pointCount > 12)
+                            //continue;
+                    }
+
+                    if (pointCount <= 12)
+                    {
+                        foreach (var item in changingPoints)
+                        {
+                            this.grid.SetItem(item.X, item.Y, !pointState);
+                        }
+                    }
+
+                }
+            }
+        }*/
+
     }
 	
 	// Update is called once per frame
