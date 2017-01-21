@@ -13,6 +13,7 @@ public class GridGenerator : MonoBehaviour
     public float height;
     
     private Grid2D<bool> grid = new Grid2D<bool>(32, 64);
+    private Grid2D<bool> gridAux = new Grid2D<bool>(32, 64);
 
     public static event Action OnDestroyRequest = delegate { };
 
@@ -113,17 +114,19 @@ public class GridGenerator : MonoBehaviour
             }
         }
 
+        this.gridAux = grid;
+
         // Automata celular
         for (int iteration = 0; iteration < iterations; iteration++)
         {
-            for (int i = 0; i < this.grid.Width; i++)
+            for (int i = 0; i < this.gridAux.Width; i++)
             {
-                for (int j = 0; j < this.grid.Height; j++)
+                for (int j = 0; j < this.gridAux.Height; j++)
                 {
-                    bool[] neigbours = grid.ChessboardNeighbours(i, j);
+                    bool[] neigbours = gridAux.ChessboardNeighbours(i, j);
                     int wallCount = this.CountWalls(neigbours);
 
-                    bool currentItem = grid.GetItem(i, j);
+                    bool currentItem = gridAux.GetItem(i, j);
                     if (currentItem) // Current item es pared
                     {
                         if (wallCount < 5) currentItem = false;
@@ -133,10 +136,12 @@ public class GridGenerator : MonoBehaviour
                         if (wallCount > 4) currentItem = true;
                     }
 
-                    grid.SetItem(i, j, currentItem);
+                    gridAux.SetItem(i, j, currentItem);
                 }
             }
         }
+
+        this.grid = gridAux;
 
         
     }
