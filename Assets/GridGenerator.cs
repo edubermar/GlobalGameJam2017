@@ -145,15 +145,16 @@ public class GridGenerator : MonoBehaviour
                         if (wallCount > 4) aux.SetItem(i, j, true);
                         else aux.SetItem(i, j, false);
                     }
-                    if (holeCount > 5 && wallCount == 1)
+                    if (holeCount > 5 && wallCount == 1 && RandomUtil.Chance(0.003f))
                     {
                         var enemy = GameObject.Instantiate<EnemyScript>(this.enemy);
 
                         float hPosition = i.ToFloat().RemapTo(0, this.grid.Width - 1, -this.width * 0.5f, this.width * 0.5f);
                         float vPosition = j.ToFloat().RemapTo(0, this.grid.Height - 1, -this.height * 0.5f, this.height * 0.5f);
 
-                        enemy.transform.position = new Vector2(hPosition, vPosition);
+                        enemy.transform.localPosition = new Vector2(hPosition, vPosition);
                         enemy.transform.localScale = new Vector3(0.12f, 0.12f, 0.12f);
+                        enemy.transform.SetParent(this.transform, false);
                     }
 
                 }
