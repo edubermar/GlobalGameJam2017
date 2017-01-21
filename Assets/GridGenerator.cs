@@ -35,7 +35,7 @@ public class GridGenerator : MonoBehaviour
     // Métodos
 	private void Start()
     {
-        //this.grid.Wrapping = true;
+        this.grid.Wrapping = true;
         //this.GenerateMaze(0);
         //this.RenderMaze();
 	}
@@ -79,7 +79,7 @@ public class GridGenerator : MonoBehaviour
             }
         }
         
-        // Perlin noise
+        // Perlin noise (Generar camino seguro)
         for (int i = 0; i < this.grid.Width; i++)
         {
             float xPos = i.ToFloat().RemapTo(0, this.grid.Width - 1, this.width * -0.5f, this.width * 0.5f);
@@ -89,6 +89,27 @@ public class GridGenerator : MonoBehaviour
             for (int r = -2; r <= 2; r++)
             {
                 grid.SetItem(i, index + r, false);
+            }
+        }
+
+        // Perlin noise (Generar ramas)
+        int totalBranches = UnityEngine.Random.Range(1, 4);
+        for (int branch = 0; branch < totalBranches; branch++)
+        {
+            int branchStartX = UnityEngine.Random.Range(0, this.grid.Width);
+            int branchLength = (int)RandomUtil.NextGaussianRanged(0.0f, this.grid.Width.ToFloat());
+            for (int i = branchStartX; i < branchStartX + branchLength; i++)
+            {
+                float xPos = branchStartX.ToFloat().RemapTo(0, this.grid.Width - 1, this.width * -0.5f, this.width * 0.5f);
+                float yPos = i.ToFloat().RemapTo(0, this.grid.Width - 1, this.width * -0.5f, this.width * 0.5f);
+                float noiseValue = Mathf.PerlinNoise(xPos, yPos);
+                int index = (int)(noiseValue.RemapTo(0.0f, 1.0f, 4, grid.Height - 5));
+
+                for (int r = -2; r <= 2; r++)
+                {
+                    grid.SetItem(i, index + r, false);
+                }
+
             }
         }
 
