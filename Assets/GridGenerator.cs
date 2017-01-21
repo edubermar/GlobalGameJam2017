@@ -140,49 +140,98 @@ public class GridGenerator : MonoBehaviour
             Grid2D<bool> aux = new Grid2D<bool>(this.grid.Width, this.grid.Height);
             aux.Wrapping = true;
 
-            for (int i = 0; i < this.grid.Width; i++)
-            {
-                int holeCount = 0;
-                for (int j = 0; j < this.grid.Height; j++)
-                {
-                    bool[] neigbours = this.grid.ChessboardNeighbours(i, j);
-                    int wallCount = this.CountWalls(neigbours);
-                    bool currentItem = this.grid.GetItem(i, j);
+			for (int i = 0; i < this.grid.Width; i++) {
+				int holeCount = 0;
+				for (int j = 0; j < this.grid.Height; j++) {
+					bool[] neigbours = this.grid.ChessboardNeighbours (i, j);
+					int wallCount = this.CountWalls (neigbours);
+					bool currentItem = this.grid.GetItem (i, j);
 
-                    if (currentItem) // Current item es pared
-                    {
-                        //if (wallCount < 4) aux.SetItem(i, j, false);
-                        //else aux.SetItem(i, j, true);
+					if (currentItem) { // Current item es pared
+						//if (wallCount < 4) aux.SetItem(i, j, false);
+						//else aux.SetItem(i, j, true);
 						if (!(wallCount < 4))
-							aux.SetItem(i, j, true);
-                    }
-                    else // Current es espacio
-                    {
-                        holeCount++;
-                        if (wallCount > 3) aux.SetItem(i, j, true);
-                        //else aux.SetItem(i, j, false);
-                    }
+							aux.SetItem (i, j, true);
+					} else { // Current es espacio
+						if (wallCount > 3)
+							aux.SetItem (i, j, true);
+						//else aux.SetItem(i, j, false);
+					}
 
-                    List<bool> neigboursList = new List<bool>();
-                    neigboursList.Add(neigbours[1]);
-                    neigboursList.Add(neigbours[3]);
-                    neigboursList.Add(neigbours[4]);
-                    neigboursList.Add(neigbours[6]);
+					if (iterations == iteration + 1 ) {
+						bool CheckColumn = false;
+						bool CheckColumnUp = false;
+						bool CheckColumnRight = false;
+						bool CheckColumnDown = false;
+						bool CheckColumnLeft = false;
 
-                    if (holeCount > 5 && wallCount == 1 && RandomUtil.Chance(0.001f)&& j > 15 && j < this.grid.Height - 15)
-                    {
-                        var enemy = GameObject.Instantiate<EnemyScript>(this.enemy);
+						if (!(aux.GetItem (i, j + 1) && aux.GetItem (i, j + 2) && aux.GetItem (i, j + 3) && aux.GetItem (i, j + 4) && aux.GetItem (i, j + 5))) {
+							CheckColumnUp = true;
+						}
+						if (!(aux.GetItem (i - 1, j) && aux.GetItem (i - 2, j) && aux.GetItem (i - 3, j + 3) && aux.GetItem (i - 4, j) && aux.GetItem (i - 5, j))) {
+							CheckColumnRight = true;
+						}
+						if (!(aux.GetItem (i, j - 1) && aux.GetItem (i, j - 2) && aux.GetItem (i, j - 3) && aux.GetItem (i, j - 4) && aux.GetItem (i, j - 5))) {
+							CheckColumnDown = true;
+						}
+						if (!(aux.GetItem (i + 1, j) && aux.GetItem (i + 2, j) && aux.GetItem (i + 3, j + 3) && aux.GetItem (i + 4, j) && aux.GetItem (i - 5, j))) {
+							CheckColumnRight = true;
+						}
 
-                        float hPosition = i.ToFloat().RemapTo(0, this.grid.Width - 1, -this.width * 0.5f, this.width * 0.5f);
-                        float vPosition = j.ToFloat().RemapTo(0, this.grid.Height - 1, -this.height * 0.5f, this.height * 0.5f);
+						int nextToEnemy = 0;
+						List<bool> neigboursList = new List<bool> ();
+						neigboursList.Add (neigbours [1]);
+						neigboursList.Add (neigbours [3]);
+						neigboursList.Add (neigbours [4]);
+						neigboursList.Add (neigbours [6]);
 
-                        enemy.transform.localPosition = new Vector2(hPosition, vPosition);
-                        enemy.transform.localScale = new Vector3(0.12f, 0.12f, 0.12f);
-                        enemy.transform.SetParent(this.transform, false);
+						if (neigboursList.ToArray () [0])
+							nextToEnemy++;
+						if (neigboursList.ToArray () [1])
+							nextToEnemy++;
+						if (neigboursList.ToArray () [2])
+							nextToEnemy++;
+						if (neigboursList.ToArray () [3])
+							nextToEnemy++;
 
-						enemy.gameObject.layer = LayerMask.NameToLayer ("sonar");
+						/*if (!aux.GetItem (i + 1, j-1))
+						CheckColumn = true;
+					if (!aux.GetItem (i - 1, j-1))
+						CheckColumn = true;
+					if (!aux.GetItem (i + 1, j+1))
+						CheckColumn = true;
+					if (!aux.GetItem (i - 1, j+1))
+						CheckColumn = true;*/
+					
 
-                        /*switch (EnemyCase(neigboursList))
+						/*/Arriba
+						if (aux.GetItem (i - 1, j + 1) && aux.GetItem (i + 1, j + 1) && !aux.GetItem (i - 1, j - 1) && !aux.GetItem (i + 1, j - 1))
+							CheckColumn = true;
+						//Derecha
+						if (aux.GetItem (i + 1, j + 1) && aux.GetItem (i + 1, j - 1) && !aux.GetItem (i - 1, j + 1) && !aux.GetItem (i - 1, j - 1))
+							CheckColumn = true;
+						//Abajo
+						if (aux.GetItem (i - 1, j - 1) && aux.GetItem (i + 1, j - 1) && !aux.GetItem (i - 1, j + 1) && !aux.GetItem (i + 1, j + 1))
+							CheckColumn = true;
+						//Izquierda
+						if (aux.GetItem (i - 1, j + 1) && aux.GetItem (i - 1, j - 1) && !aux.GetItem (i + 1, j + 1) && !aux.GetItem (i + 1, j - 1))
+							CheckColumn = true;*/
+					
+
+						if (nextToEnemy == 1 && RandomUtil.Chance (0.01f) && j > 15 && j < this.grid.Height - 15
+							&& (CheckColumnUp || CheckColumnRight || CheckColumnDown || CheckColumnLeft) ) {
+							var enemy = GameObject.Instantiate<EnemyScript> (this.enemy);
+
+							float hPosition = i.ToFloat ().RemapTo (0, this.grid.Width - 1, -this.width * 0.5f, this.width * 0.5f);
+							float vPosition = j.ToFloat ().RemapTo (0, this.grid.Height - 1, -this.height * 0.5f, this.height * 0.5f);
+
+							enemy.transform.localPosition = new Vector2 (hPosition, vPosition);
+							enemy.transform.localScale = new Vector3 (0.12f, 0.12f, 0.12f);
+							enemy.transform.SetParent (this.transform, false);
+
+							enemy.gameObject.layer = LayerMask.NameToLayer ("sonar");
+
+							/*switch (EnemyCase(neigboursList))
                         {
                             // El enemigo tendrá un muro arriba
                             case 0:
@@ -199,11 +248,12 @@ public class GridGenerator : MonoBehaviour
                             default:
                                 break;
                         }*/
-                    }
+						}
 
-                }
-                holeCount = 0;
-            }
+					}
+					holeCount = 0;
+				}
+			}
             this.grid = aux;
         }   
         
