@@ -13,7 +13,7 @@ public class GridGenerator : MonoBehaviour
     public float height;
     
     private Grid2D<bool> grid = new Grid2D<bool>(32, 64);
-    private Grid2D<bool> gridAux = new Grid2D<bool>(32, 64);
+    //private Grid2D<bool> gridAux = new Grid2D<bool>(32, 64);
 
     public static event Action OnDestroyRequest = delegate { };
 
@@ -70,6 +70,8 @@ public class GridGenerator : MonoBehaviour
         this.transform.DestroyChildren();
 
         // Paso inicial
+        this.grid.Wrapping = true;
+
         for (int i = 0; i < this.grid.Width; i++)
         {
             for (int j = 0; j < this.grid.Height; j++)
@@ -114,35 +116,34 @@ public class GridGenerator : MonoBehaviour
             }
         }
 
-        this.gridAux = grid;
-
         // Automata celular
         for (int iteration = 0; iteration < iterations; iteration++)
         {
-            for (int i = 0; i < this.gridAux.Width; i++)
-            {
-                for (int j = 0; j < this.gridAux.Height; j++)
-                {
-                    bool[] neigbours = gridAux.ChessboardNeighbours(i, j);
-                    int wallCount = this.CountWalls(neigbours);
+            Grid2D<bool> aux = new Grid2D<bool>(this.grid.Width, this.grid.Height);
+            aux.Wrapping = true;
 
-                    bool currentItem = gridAux.GetItem(i, j);
+            for (int i = 0; i < this.grid.Width; i++)
+            {
+                for (int j = 0; j < this.grid.Height; j++)
+                {
+                    bool[] neigbours = this.grid.ChessboardNeighbours(i, j);
+                    int wallCount = this.CountWalls(neigbours);
+                    bool currentItem = this.grid.GetItem(i, j);
+                    
                     if (currentItem) // Current item es pared
                     {
-                        if (wallCount < 5) currentItem = false;
+                        if (wallCount < 4) aux.SetItem(i, j, false);
+                        else aux.SetItem(i, j, true);
                     }
                     else // Current es espacio
                     {
-                        if (wallCount > 4) currentItem = true;
+                        if (wallCount > 4) aux.SetItem(i, j, true);
+                        else aux.SetItem(i, j, false);
                     }
-
-                    gridAux.SetItem(i, j, currentItem);
                 }
             }
-        }
-
-        this.grid = gridAux;
-
+            this.grid = aux;
+        }   
         
     }
 	
