@@ -232,7 +232,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lowerLimit: -3
   upperLimit: 3
-  movementSpeed: 0.1
+  movementSpeed: 0.5
   iterations: 6
   gridList:
   - {fileID: 1113686930}
@@ -301,6 +301,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wall: {fileID: 212212050194936244, guid: 3a914971fa0d87348ab3445cec573605, type: 2}
+  enemy: {fileID: 114548372779782778, guid: 8ea85e3b447ae8244b80644e2abd4556, type: 2}
   width: 1
   height: 2.08
 --- !u!1 &1176374448
@@ -344,6 +345,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wall: {fileID: 212212050194936244, guid: 3a914971fa0d87348ab3445cec573605, type: 2}
+  enemy: {fileID: 114548372779782778, guid: 8ea85e3b447ae8244b80644e2abd4556, type: 2}
   width: 1
   height: 2.08
 --- !u!1 &1393761635
@@ -474,6 +476,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wall: {fileID: 212212050194936244, guid: 3a914971fa0d87348ab3445cec573605, type: 2}
+  enemy: {fileID: 114548372779782778, guid: 8ea85e3b447ae8244b80644e2abd4556, type: 2}
   width: 1
   height: 2.08
 --- !u!1 &1490785295
@@ -517,6 +520,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wall: {fileID: 212212050194936244, guid: 3a914971fa0d87348ab3445cec573605, type: 2}
+  enemy: {fileID: 114548372779782778, guid: 8ea85e3b447ae8244b80644e2abd4556, type: 2}
   width: 1
   height: 2.08
 --- !u!1 &1909503871
@@ -560,6 +564,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wall: {fileID: 212212050194936244, guid: 3a914971fa0d87348ab3445cec573605, type: 2}
+  enemy: {fileID: 114548372779782778, guid: 8ea85e3b447ae8244b80644e2abd4556, type: 2}
   width: 1
   height: 2.08
 --- !u!1 &2037260144
@@ -590,6 +595,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wall: {fileID: 212212050194936244, guid: 3a914971fa0d87348ab3445cec573605, type: 2}
+  enemy: {fileID: 114548372779782778, guid: 8ea85e3b447ae8244b80644e2abd4556, type: 2}
   width: 1
   height: 2.08
 --- !u!4 &2037260146

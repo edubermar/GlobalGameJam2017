@@ -25,7 +25,7 @@ public class GridController : MonoBehaviour
         foreach (var grid in this.gridList)
         {
             grid.GenerateMaze(this.worldPosition, this.perlinHeight, iterations);
-            grid.RenderMaze(1);
+			grid.RenderMaze(0);
         }
     }
     
@@ -37,15 +37,15 @@ public class GridController : MonoBehaviour
         // Actualizar posicion de la camara principal
         Camera.main.transform.Translate(new Vector3(displacement, 0));
         // Actualizar posición global y posiciones de los grids
-        //this.worldPosition += displacement;
+        this.worldPosition += displacement;
         foreach (var grid in this.gridList)
         {
-            grid.transform.TranslateByAxis(TransformAxis.X, -displacement);
+            //grid.transform.TranslateByAxis(TransformAxis.X, -displacement);
             if (grid.transform.position.x - Camera.main.transform.position.x < this.lowerLimit)
             {
                 grid.transform.TranslateByAxis(TransformAxis.X, this.upperLimit - this.lowerLimit);
                 grid.GenerateMaze(this.worldPosition, this.perlinHeight, iterations);
-                grid.RenderMaze(1);
+                grid.RenderMaze(0);
             }
         }
 	}
