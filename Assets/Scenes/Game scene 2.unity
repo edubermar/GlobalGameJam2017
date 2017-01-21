@@ -206,8 +206,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lowerLimit: -4
   upperLimit: 4
-  movementSpeed: 0.2
-  iterations: 6
+  movementSpeed: 1.13
+  iterations: 0
   gridList:
   - {fileID: 39978545}
   - {fileID: 1113686930}
