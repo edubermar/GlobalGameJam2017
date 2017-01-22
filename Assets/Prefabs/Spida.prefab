@@ -23,10 +23,10 @@ GameObject:
   - component: {fileID: 95136682983293978}
   - component: {fileID: 58548644319116888}
   - component: {fileID: 60943758978698638}
-  - component: {fileID: 114819011182474692}
-  m_Layer: 0
+  - component: {fileID: 114730384486587990}
+  m_Layer: 8
   m_Name: Spida
-  m_TagString: Untagged
+  m_TagString: Spider
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -95,7 +95,7 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
---- !u!114 &114819011182474692
+--- !u!114 &114730384486587990
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -103,7 +103,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1722842869019290}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 70a4bf613afb2bc4ba1dcf69c2599ce7, type: 3}
+  m_Script: {fileID: 11500000, guid: d0b222ecb3d145c44a02cab487bec660, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!212 &212088477693328336

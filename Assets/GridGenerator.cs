@@ -9,8 +9,10 @@ public class GridGenerator : MonoBehaviour
 {
     // Campos
     public SpriteRenderer wall;
-    public EnemyScript enemy;
     public List<SpriteRenderer> tiles;
+
+    public GameObject snek;
+    public GameObject spida;
 
     public float width;
     public float height;
@@ -40,6 +42,8 @@ public class GridGenerator : MonoBehaviour
 	private void Start()
     {
         this.grid.Wrapping = true;
+        this.GenerateTunnel();
+        this.RenderMaze(1);
         //this.GenerateMaze(0);
         //this.RenderMaze();
 	}
@@ -140,201 +144,188 @@ public class GridGenerator : MonoBehaviour
             Grid2D<bool> aux = new Grid2D<bool>(this.grid.Width, this.grid.Height);
             aux.Wrapping = true;
 
-			for (int i = 0; i < this.grid.Width; i++) {
-				int holeCount = 0;
-				for (int j = 0; j < this.grid.Height; j++) {
-					bool[] neigbours = this.grid.ChessboardNeighbours (i, j);
-					int wallCount = this.CountWalls (neigbours);
-					bool currentItem = this.grid.GetItem (i, j);
+            for (int i = 0; i < this.grid.Width; i++)
+            {
+                int holeCount = 0;
+                for (int j = 0; j < this.grid.Height; j++)
+                {
+                    bool[] neigbours = this.grid.ChessboardNeighbours(i, j);
+                    int wallCount = this.CountWalls(neigbours);
+                    bool currentItem = this.grid.GetItem(i, j);
 
-					if (currentItem) { // Current item es pared
-						//if (wallCount < 4) aux.SetItem(i, j, false);
-						//else aux.SetItem(i, j, true);
-						if (!(wallCount < 4))
-							aux.SetItem (i, j, true);
-					} else { // Current es espacio
-						if (wallCount > 3)
-							aux.SetItem (i, j, true);
-						//else aux.SetItem(i, j, false);
-					}
+                    if (currentItem)
+                    { // Current item es pared
+                        //if (wallCount < 4) aux.SetItem(i, j, false);
+                        //else aux.SetItem(i, j, true);
+                        if (!(wallCount < 4))
+                            aux.SetItem(i, j, true);
+                    }
+                    else
+                    { // Current es espacio
+                        if (wallCount > 3)
+                            aux.SetItem(i, j, true);
+                        //else aux.SetItem(i, j, false);
+                    }
 
-					if (iterations == iteration + 1 ) {
-						bool CheckColumn = false;
-						bool CheckColumnUp = false;
-						bool CheckColumnRight = false;
-						bool CheckColumnDown = false;
-						bool CheckColumnLeft = false;
+                    if (iterations == iteration + 1)
+                    {
+                        bool CheckColumn = false;
+                        bool CheckColumnUp = false;
+                        bool CheckColumnRight = false;
+                        bool CheckColumnDown = false;
+                        bool CheckColumnLeft = false;
 
-						if (!(aux.GetItem (i, j + 1) && aux.GetItem (i, j + 2) && aux.GetItem (i, j + 3) && aux.GetItem (i, j + 4) && aux.GetItem (i, j + 5))) {
-							CheckColumnUp = true;
-						}
-						if (!(aux.GetItem (i - 1, j) && aux.GetItem (i - 2, j) && aux.GetItem (i - 3, j + 3) && aux.GetItem (i - 4, j) && aux.GetItem (i - 5, j))) {
-							CheckColumnRight = true;
-						}
-						if (!(aux.GetItem (i, j - 1) && aux.GetItem (i, j - 2) && aux.GetItem (i, j - 3) && aux.GetItem (i, j - 4) && aux.GetItem (i, j - 5))) {
-							CheckColumnDown = true;
-						}
-						if (!(aux.GetItem (i + 1, j) && aux.GetItem (i + 2, j) && aux.GetItem (i + 3, j + 3) && aux.GetItem (i + 4, j) && aux.GetItem (i - 5, j))) {
-							CheckColumnRight = true;
-						}
-
-						int nextToEnemy = 0;
-						List<bool> neigboursList = new List<bool> ();
-						neigboursList.Add (neigbours [1]);
-						neigboursList.Add (neigbours [3]);
-						neigboursList.Add (neigbours [4]);
-						neigboursList.Add (neigbours [6]);
-
-						if (neigboursList.ToArray () [0])
-							nextToEnemy++;
-						if (neigboursList.ToArray () [1])
-							nextToEnemy++;
-						if (neigboursList.ToArray () [2])
-							nextToEnemy++;
-						if (neigboursList.ToArray () [3])
-							nextToEnemy++;
-
-						/*if (!aux.GetItem (i + 1, j-1))
-						CheckColumn = true;
-					if (!aux.GetItem (i - 1, j-1))
-						CheckColumn = true;
-					if (!aux.GetItem (i + 1, j+1))
-						CheckColumn = true;
-					if (!aux.GetItem (i - 1, j+1))
-						CheckColumn = true;*/
-					
-
-						/*/Arriba
-						if (aux.GetItem (i - 1, j + 1) && aux.GetItem (i + 1, j + 1) && !aux.GetItem (i - 1, j - 1) && !aux.GetItem (i + 1, j - 1))
-							CheckColumn = true;
-						//Derecha
-						if (aux.GetItem (i + 1, j + 1) && aux.GetItem (i + 1, j - 1) && !aux.GetItem (i - 1, j + 1) && !aux.GetItem (i - 1, j - 1))
-							CheckColumn = true;
-						//Abajo
-						if (aux.GetItem (i - 1, j - 1) && aux.GetItem (i + 1, j - 1) && !aux.GetItem (i - 1, j + 1) && !aux.GetItem (i + 1, j + 1))
-							CheckColumn = true;
-						//Izquierda
-						if (aux.GetItem (i - 1, j + 1) && aux.GetItem (i - 1, j - 1) && !aux.GetItem (i + 1, j + 1) && !aux.GetItem (i + 1, j - 1))
-							CheckColumn = true;*/
-					
-
-						if (nextToEnemy == 1 && RandomUtil.Chance (0.01f) && j > 15 && j < this.grid.Height - 15
-							&& (CheckColumnUp || CheckColumnRight || CheckColumnDown || CheckColumnLeft) ) {
-							var enemy = GameObject.Instantiate<EnemyScript> (this.enemy);
-
-							float hPosition = i.ToFloat ().RemapTo (0, this.grid.Width - 1, -this.width * 0.5f, this.width * 0.5f);
-							float vPosition = j.ToFloat ().RemapTo (0, this.grid.Height - 1, -this.height * 0.5f, this.height * 0.5f);
-
-							enemy.transform.localPosition = new Vector2 (hPosition, vPosition);
-							enemy.transform.localScale = new Vector3 (0.12f, 0.12f, 0.12f);
-							enemy.transform.SetParent (this.transform, false);
-
-							enemy.gameObject.layer = LayerMask.NameToLayer ("sonar");
-
-							/*switch (EnemyCase(neigboursList))
+                        if (!(aux.GetItem(i, j + 1) && aux.GetItem(i, j + 2) && aux.GetItem(i, j + 3) && aux.GetItem(i, j + 4) && aux.GetItem(i, j + 5)))
                         {
-                            // El enemigo tendrá un muro arriba
-                            case 0:
-                                break;
-                            // El enemigo tendrá un muro a la izquierda
-                            case 1:
-                                break;
-                            // El enemigo tendrá un muro a la derecha
-                            case 2:
-                                break;
-                            // El enemigo tendrá un muro abajo
-                            case 3:
-                                break;
-                            default:
-                                break;
-                        }*/
-						}
+                            CheckColumnUp = true;
+                        }
+                        if (!(aux.GetItem(i - 1, j) && aux.GetItem(i - 2, j) && aux.GetItem(i - 3, j + 3) && aux.GetItem(i - 4, j) && aux.GetItem(i - 5, j)))
+                        {
+                            CheckColumnRight = true;
+                        }
+                        if (!(aux.GetItem(i, j - 1) && aux.GetItem(i, j - 2) && aux.GetItem(i, j - 3) && aux.GetItem(i, j - 4) && aux.GetItem(i, j - 5)))
+                        {
+                            CheckColumnDown = true;
+                        }
+                        if (!(aux.GetItem(i + 1, j) && aux.GetItem(i + 2, j) && aux.GetItem(i + 3, j + 3) && aux.GetItem(i + 4, j) && aux.GetItem(i - 5, j)))
+                        {
+                            CheckColumnRight = true;
+                        }
 
-					}
-					holeCount = 0;
-				}
-			}
+                        int nextToEnemy = 0;
+                        List<bool> neigboursList = new List<bool>();
+                        neigboursList.Add(neigbours[1]);
+                        neigboursList.Add(neigbours[3]);
+                        neigboursList.Add(neigbours[4]);
+                        neigboursList.Add(neigbours[6]);
+
+                        if (neigboursList.ToArray()[0])
+                            nextToEnemy++;
+                        if (neigboursList.ToArray()[1])
+                            nextToEnemy++;
+                        if (neigboursList.ToArray()[2])
+                            nextToEnemy++;
+                        if (neigboursList.ToArray()[3])
+                            nextToEnemy++;
+
+                        if (!aux.GetItem(i + 1, j - 1))
+                            CheckColumn = true;
+                        if (!aux.GetItem(i - 1, j - 1))
+                            CheckColumn = true;
+                        if (!aux.GetItem(i + 1, j + 1))
+                            CheckColumn = true;
+                        if (!aux.GetItem(i - 1, j + 1))
+                            CheckColumn = true;
+					
+
+                        //Arriba
+                        if (aux.GetItem(i - 1, j + 1) && aux.GetItem(i + 1, j + 1) && !aux.GetItem(i - 1, j - 1) && !aux.GetItem(i + 1, j - 1))
+                            CheckColumn = true;
+                        //Derecha
+                        if (aux.GetItem(i + 1, j + 1) && aux.GetItem(i + 1, j - 1) && !aux.GetItem(i - 1, j + 1) && !aux.GetItem(i - 1, j - 1))
+                            CheckColumn = true;
+                        //Abajo
+                        if (aux.GetItem(i - 1, j - 1) && aux.GetItem(i + 1, j - 1) && !aux.GetItem(i - 1, j + 1) && !aux.GetItem(i + 1, j + 1))
+                            CheckColumn = true;
+                        //Izquierda
+                        if (aux.GetItem(i - 1, j + 1) && aux.GetItem(i - 1, j - 1) && !aux.GetItem(i + 1, j + 1) && !aux.GetItem(i + 1, j - 1))
+                            CheckColumn = true;
+					
+
+                        if (nextToEnemy == 1 && RandomUtil.Chance(0.01f) && j > 15 && j < this.grid.Height - 15
+                        && (CheckColumnUp || CheckColumnRight || CheckColumnDown || CheckColumnLeft))
+                        {
+                            {
+                                var selectedEnemy = RandomUtil.NextInRange<GameObject>(this.snek, this.spida);
+                                var enemy = GameObject.Instantiate<GameObject>(selectedEnemy);
+
+                                float hPosition = i.ToFloat().RemapTo(0, this.grid.Width - 1, -this.width * 0.5f, this.width * 0.5f);
+                                float vPosition = j.ToFloat().RemapTo(0, this.grid.Height - 1, -this.height * 0.5f, this.height * 0.5f);
+
+                                enemy.transform.localPosition = new Vector2(hPosition, vPosition);
+                                //enemy.transform.localScale = new Vector3 (0.12f, 0.12f, 0.12f);
+                                enemy.transform.SetParent(this.transform, false);
+
+                                enemy.gameObject.layer = LayerMask.NameToLayer("sonar");
+
+                                /*switch (EnemyCase(neigboursList))
+                            {
+                                // El enemigo tendrá un muro arriba
+                                case 0:
+                                    break;
+                                // El enemigo tendrá un muro a la izquierda
+                                case 1:
+                                    break;
+                                // El enemigo tendrá un muro a la derecha
+                                case 2:
+                                    break;
+                                // El enemigo tendrá un muro abajo
+                                case 3:
+                                    break;
+                                default:
+                                    break;
+                            }*/
+                            }
+
+                        }
+                        holeCount = 0;
+                    
+
+                    }
+                }
+            }
             this.grid = aux;
         }   
-        
-		/*
-        // Flood fill
-        HashSet<Point2D> closedPoints = new HashSet<Point2D>();
+
+    }
+	
+    public void GenerateTunnel()
+    {
+        this.transform.DestroyChildren();
+
+        // Paso inicial
+        this.grid.Wrapping = true;
+
         for (int i = 0; i < this.grid.Width; i++)
         {
             for (int j = 0; j < this.grid.Height; j++)
             {
-                if (!closedPoints.Contains(new Point2D(i, j)))
-                {
-                    Queue<Point2D> queuePoints = new Queue<Point2D>();
-                    List<Point2D> changingPoints = new List<Point2D>();
+                float probability = Mathf.Abs(j - this.grid.Height / 2);
+                grid.SetItem(i, j, RandomUtil.Chance(probability * 0.02f));
+                if (j.InRange(0, 2) || j.InRange(grid.Height - 1, grid.Height - 3))
+                    grid.SetItem(i, j, true);
+            }
+        }
 
-                    var pt = new Point2D(i, j);
-                    queuePoints.Enqueue(pt);
-                    closedPoints.Add(pt);
-                    changingPoints.Add(pt);
+        // Autómata celular
+        for (int iteration = 0; iteration < 3; iteration++)
+        {
+            Grid2D<bool> aux = new Grid2D<bool>(this.grid.Width, this.grid.Height);
+            aux.Wrapping = true;
 
-                    int pointCount = 1;
-                    bool pointState = this.grid[i, j];
+            for (int i = 0; i < this.grid.Width; i++) {
+                int holeCount = 0;
+                for (int j = 0; j < this.grid.Height; j++) {
+                    bool[] neigbours = this.grid.ChessboardNeighbours (i, j);
+                    int wallCount = this.CountWalls (neigbours);
+                    bool currentItem = this.grid.GetItem (i, j);
 
-                    while (queuePoints.Count > 0)
+                    if (currentItem) // Current item es pared
                     {
-                        var point = queuePoints.Dequeue();
-
-                        var nPoint = new Point2D(point.X - 1, point.Y);
-                        if (point.X > 0 && this.grid[nPoint] == pointState && !closedPoints.Contains(nPoint))
-                        {
-                            queuePoints.Enqueue(nPoint);
-                            closedPoints.Add(nPoint);
-                            changingPoints.Add(nPoint);
-                            pointCount++;
-                        }
-
-                        nPoint = new Point2D(point.X + 1, point.Y);
-                        if (point.X < this.grid.Width - 1 && this.grid[nPoint] == pointState && !closedPoints.Contains(nPoint))
-                        {
-                            queuePoints.Enqueue(nPoint);
-                            closedPoints.Add(nPoint);
-                            changingPoints.Add(nPoint);
-                            pointCount++;
-                        }
-                        
-                        nPoint = new Point2D(point.X, point.Y - 1);
-                        if (point.Y > 0 && this.grid[nPoint] == pointState && !closedPoints.Contains(nPoint))
-                        {
-                            queuePoints.Enqueue(nPoint);
-                            closedPoints.Add(nPoint);
-                            changingPoints.Add(nPoint);
-                            pointCount++;
-                        }
-                        
-                        nPoint = new Point2D(point.X, point.Y + 1);
-                        if (point.Y < this.grid.Height - 1 && this.grid[nPoint] == pointState && !closedPoints.Contains(nPoint))
-                        {
-                            queuePoints.Enqueue(nPoint);
-                            closedPoints.Add(nPoint);
-                            changingPoints.Add(nPoint);
-                            pointCount++;
-                        }
-
-                        //if (pointCount > 12)
-                            //continue;
+                        if (!(wallCount < 4))
+                            aux.SetItem(i, j, true);
                     }
-
-                    if (pointCount <= 12)
+                    else // Current es espacio
                     {
-                        foreach (var item in changingPoints)
-                        {
-                            this.grid.SetItem(item.X, item.Y, !pointState);
-                        }
+                        if (wallCount > 3)
+                            aux.SetItem(i, j, true);
                     }
-
                 }
             }
-        }*/
-
+            this.grid = aux;
+        }   
     }
-	
+
 	// Update is called once per frame
 	private void Update()
     {

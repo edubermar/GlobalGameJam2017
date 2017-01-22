@@ -8,6 +8,9 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     // Campos
+    [SerializeField]
+    private GameObject blood;
+
     private Rigidbody2D playerRigidbody;
     private Animator playerAnimator;
 
@@ -39,23 +42,34 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-		Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
-        //this.transform.Translate(input * Time.deltaTime);
-        
-        this.playerRigidbody.AddForce(input, ForceMode2D.Impulse);
-        this.playerAnimator.SetFloat("Horizontal speed", input.x);
-        this.transform.SetRotationEulerZ(-input.x * 15.0f);
+		if (!this.dead)
+        {
+            Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
 
-        PlayerController.OnPlayerMoved(this.transform.position);
+            this.playerRigidbody.AddForce(input, ForceMode2D.Impulse);
+            this.playerAnimator.SetFloat("Horizontal speed", input.x);
+            this.transform.SetRotationEulerZ(-input.x * 15.0f);
 
-        if (!this.dead)
-            this.Life += 7.5f * Time.deltaTime;
+            PlayerController.OnPlayerMoved(this.transform.position);
+
+            this.Life += 5.0f * Time.deltaTime;
+
+            if (this.transform.position.x < Camera.main.transform.position.x - Camera.main.aspect)
+            {
+                this.life = 0.0f;
+                this.dead = true;
+                PlayerController.OnPlayerDied(DeathType.LeftCamera);
+            }
+        }
 	}
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (this.life < 20.0f) // Se ha muerto
+        if (this.life < 20.0f || other.collider.tag == "Snake") // Se ha muerto
         {
+            this.playerAnimator.SetTrigger("Death");
+            this.playerRigidbody.Sleep();
+
             this.life = 0.0f;
             this.dead = true;
 
@@ -66,17 +80,22 @@ public class PlayerController : MonoBehaviour
                 deathType = DeathType.Snake;
             if (other.collider.tag == "Spider")
                 deathType = DeathType.Spider;
-            
+
             PlayerController.OnPlayerDied(deathType);
+
+            GameObject.Instantiate(this.blood, this.transform.position, Quaternion.identity);
+            //this.gameObject.SetActive(false);
         }
         else // Choque no letal
         {
+            this.playerAnimator.SetTrigger("Hurt");
+
             this.Life -= 20.0f;
 
             this.GetComponent<SpriteRenderer>().color = Color.red;
             Vector3 repulsionVector = this.transform.position - (Vector3)other.contacts[0].point;
 
-            float force = (200.0f + (100.0f - this.life) * 10.0f) * 0.008f;
+            float force = (200.0f + (100.0f - this.life) * 10.0f) * 0.003f;
             this.playerRigidbody.AddForce(repulsionVector.normalized * force, ForceMode2D.Impulse);
             this.StartCoroutine(this.DragAdjustmentCorroutine(0.5f));
         }

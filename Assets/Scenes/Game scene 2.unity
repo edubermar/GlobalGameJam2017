@@ -102,8 +102,8 @@ GameObject:
   - component: {fileID: 971976159}
   - component: {fileID: 971976163}
   - component: {fileID: 971976162}
-  - component: {fileID: 971976161}
   - component: {fileID: 971976164}
+  - component: {fileID: 971976161}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -170,6 +170,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 286d678ea2c6d9140b42f5ef25077e48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  blood: {fileID: 1676438760745170, guid: 8c98704c0a01f4644b4f407804807c07, type: 2}
 --- !u!58 &971976162
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -203,7 +204,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!95 &971976164
 Animator:
   serializedVersion: 3
@@ -250,7 +251,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lowerLimit: -3
   upperLimit: 3
-  movementSpeed: 0
+  movementSpeed: 0.25
+  augmentSpeed: 0.01
   iterations: 4
   downsample: 1
   gridList:
@@ -319,8 +321,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf4a37d1195c7e49911f6470bbf7455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 212212050194936244, guid: 3a914971fa0d87348ab3445cec573605, type: 2}
-  enemy: {fileID: 114548372779782778, guid: 8ea85e3b447ae8244b80644e2abd4556, type: 2}
+  wall: {fileID: 0}
   tiles:
   - {fileID: 212097932539969920, guid: a1d41e429fa667d42bc185a8c0c6e5ae, type: 2}
   - {fileID: 212939724774973902, guid: 869f53164bcface4887708c11bd1dc3d, type: 2}
@@ -338,6 +339,8 @@ MonoBehaviour:
   - {fileID: 212087250588682994, guid: a37f207ff86225643ac02039dbe35e45, type: 2}
   - {fileID: 212224320917635798, guid: 02768099e05832c41a5c2cf95b48d977, type: 2}
   - {fileID: 212707867305149058, guid: 2bbd2189a694a314d8d621768b97fc8f, type: 2}
+  snek: {fileID: 1380313257264106, guid: b696445b1a4f83d44857a976267ea98b, type: 2}
+  spida: {fileID: 1722842869019290, guid: 7c6b6a578eab85c40821fe5c7a6de3b7, type: 2}
   width: 1
   height: 2.08
 --- !u!1 &1176374448
@@ -380,8 +383,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf4a37d1195c7e49911f6470bbf7455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 212212050194936244, guid: 3a914971fa0d87348ab3445cec573605, type: 2}
-  enemy: {fileID: 114548372779782778, guid: 8ea85e3b447ae8244b80644e2abd4556, type: 2}
+  wall: {fileID: 0}
   tiles:
   - {fileID: 212097932539969920, guid: a1d41e429fa667d42bc185a8c0c6e5ae, type: 2}
   - {fileID: 212939724774973902, guid: 869f53164bcface4887708c11bd1dc3d, type: 2}
@@ -399,6 +401,8 @@ MonoBehaviour:
   - {fileID: 212087250588682994, guid: a37f207ff86225643ac02039dbe35e45, type: 2}
   - {fileID: 212224320917635798, guid: 02768099e05832c41a5c2cf95b48d977, type: 2}
   - {fileID: 212707867305149058, guid: 2bbd2189a694a314d8d621768b97fc8f, type: 2}
+  snek: {fileID: 1380313257264106, guid: b696445b1a4f83d44857a976267ea98b, type: 2}
+  spida: {fileID: 1722842869019290, guid: 7c6b6a578eab85c40821fe5c7a6de3b7, type: 2}
   width: 1
   height: 2.08
 --- !u!1 &1393761635
@@ -529,8 +533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf4a37d1195c7e49911f6470bbf7455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 212212050194936244, guid: 3a914971fa0d87348ab3445cec573605, type: 2}
-  enemy: {fileID: 114548372779782778, guid: 8ea85e3b447ae8244b80644e2abd4556, type: 2}
+  wall: {fileID: 0}
   tiles:
   - {fileID: 212097932539969920, guid: a1d41e429fa667d42bc185a8c0c6e5ae, type: 2}
   - {fileID: 212939724774973902, guid: 869f53164bcface4887708c11bd1dc3d, type: 2}
@@ -548,6 +551,8 @@ MonoBehaviour:
   - {fileID: 212087250588682994, guid: a37f207ff86225643ac02039dbe35e45, type: 2}
   - {fileID: 212224320917635798, guid: 02768099e05832c41a5c2cf95b48d977, type: 2}
   - {fileID: 212707867305149058, guid: 2bbd2189a694a314d8d621768b97fc8f, type: 2}
+  snek: {fileID: 1380313257264106, guid: b696445b1a4f83d44857a976267ea98b, type: 2}
+  spida: {fileID: 1722842869019290, guid: 7c6b6a578eab85c40821fe5c7a6de3b7, type: 2}
   width: 1
   height: 2.08
 --- !u!1 &1490785295
@@ -590,8 +595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf4a37d1195c7e49911f6470bbf7455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 212212050194936244, guid: 3a914971fa0d87348ab3445cec573605, type: 2}
-  enemy: {fileID: 114548372779782778, guid: 8ea85e3b447ae8244b80644e2abd4556, type: 2}
+  wall: {fileID: 0}
   tiles:
   - {fileID: 212097932539969920, guid: a1d41e429fa667d42bc185a8c0c6e5ae, type: 2}
   - {fileID: 212939724774973902, guid: 869f53164bcface4887708c11bd1dc3d, type: 2}
@@ -609,6 +613,8 @@ MonoBehaviour:
   - {fileID: 212087250588682994, guid: a37f207ff86225643ac02039dbe35e45, type: 2}
   - {fileID: 212224320917635798, guid: 02768099e05832c41a5c2cf95b48d977, type: 2}
   - {fileID: 212707867305149058, guid: 2bbd2189a694a314d8d621768b97fc8f, type: 2}
+  snek: {fileID: 1380313257264106, guid: b696445b1a4f83d44857a976267ea98b, type: 2}
+  spida: {fileID: 1722842869019290, guid: 7c6b6a578eab85c40821fe5c7a6de3b7, type: 2}
   width: 1
   height: 2.08
 --- !u!1 &1661928844
@@ -628,7 +634,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1661928845
 Transform:
   m_ObjectHideFlags: 0
@@ -656,11 +662,11 @@ MonoBehaviour:
   _mode: 1
   _direction: {x: 0, y: 0, z: 1}
   _origin: {x: 0, y: 0, z: 0}
-  _baseColor: {r: 0.2, g: 0.2, b: 0.2, a: 0}
+  _baseColor: {r: 0, g: 0, b: 0, a: 0}
   _waveColor: {r: 1, g: 1, b: 1, a: 0}
-  _waveAmplitude: 100
-  _waveExponent: 10
-  _waveInterval: 1
+  _waveAmplitude: 4
+  _waveExponent: 6
+  _waveInterval: 0.8
   _waveSpeed: 0.25
   _addColor: {r: 0, g: 0, b: 0, a: 1}
   _texture: {fileID: 0}
@@ -750,8 +756,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf4a37d1195c7e49911f6470bbf7455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 212212050194936244, guid: 3a914971fa0d87348ab3445cec573605, type: 2}
-  enemy: {fileID: 114548372779782778, guid: 8ea85e3b447ae8244b80644e2abd4556, type: 2}
+  wall: {fileID: 0}
   tiles:
   - {fileID: 212097932539969920, guid: a1d41e429fa667d42bc185a8c0c6e5ae, type: 2}
   - {fileID: 212939724774973902, guid: 869f53164bcface4887708c11bd1dc3d, type: 2}
@@ -769,6 +774,8 @@ MonoBehaviour:
   - {fileID: 212087250588682994, guid: a37f207ff86225643ac02039dbe35e45, type: 2}
   - {fileID: 212224320917635798, guid: 02768099e05832c41a5c2cf95b48d977, type: 2}
   - {fileID: 212707867305149058, guid: 2bbd2189a694a314d8d621768b97fc8f, type: 2}
+  snek: {fileID: 1380313257264106, guid: b696445b1a4f83d44857a976267ea98b, type: 2}
+  spida: {fileID: 1722842869019290, guid: 7c6b6a578eab85c40821fe5c7a6de3b7, type: 2}
   width: 1
   height: 2.08
 --- !u!1 &2037260144
@@ -798,8 +805,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dbf4a37d1195c7e49911f6470bbf7455, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wall: {fileID: 212212050194936244, guid: 3a914971fa0d87348ab3445cec573605, type: 2}
-  enemy: {fileID: 114548372779782778, guid: 8ea85e3b447ae8244b80644e2abd4556, type: 2}
+  wall: {fileID: 0}
   tiles:
   - {fileID: 212097932539969920, guid: a1d41e429fa667d42bc185a8c0c6e5ae, type: 2}
   - {fileID: 212939724774973902, guid: 869f53164bcface4887708c11bd1dc3d, type: 2}
@@ -817,6 +823,8 @@ MonoBehaviour:
   - {fileID: 212087250588682994, guid: a37f207ff86225643ac02039dbe35e45, type: 2}
   - {fileID: 212224320917635798, guid: 02768099e05832c41a5c2cf95b48d977, type: 2}
   - {fileID: 212707867305149058, guid: 2bbd2189a694a314d8d621768b97fc8f, type: 2}
+  snek: {fileID: 1380313257264106, guid: b696445b1a4f83d44857a976267ea98b, type: 2}
+  spida: {fileID: 1722842869019290, guid: 7c6b6a578eab85c40821fe5c7a6de3b7, type: 2}
   width: 1
   height: 2.08
 --- !u!4 &2037260146

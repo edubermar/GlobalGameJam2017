@@ -9,7 +9,7 @@ public class GridController : MonoBehaviour
     public float upperLimit = 4.0f;
 
     public float movementSpeed = 1.0f;
-
+    public float augmentSpeed = 0.1f;
 
     private float worldPosition = 0.0f;
     private float perlinHeight;
@@ -25,9 +25,9 @@ public class GridController : MonoBehaviour
 
         foreach (var grid in this.gridList)
         {
-            grid.GenerateMaze(this.worldPosition, this.perlinHeight, iterations);
+            //grid.GenerateMaze(this.worldPosition, this.perlinHeight, iterations);
 
-			grid.RenderMaze(downsample);
+			//grid.RenderMaze(downsample);
         }
     }
     
@@ -48,6 +48,8 @@ public class GridController : MonoBehaviour
                 grid.transform.TranslateByAxis(TransformAxis.X, this.upperLimit - this.lowerLimit);
                 grid.GenerateMaze(this.worldPosition, this.perlinHeight, iterations);
 				grid.RenderMaze(downsample);
+
+                movementSpeed += augmentSpeed;
             }
         }
 	}
