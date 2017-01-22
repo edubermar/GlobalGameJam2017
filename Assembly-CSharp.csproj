@@ -46,8 +46,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\AutoPlay.cs" />
      <Compile Include="Assets\EmptyEnumeration.cs" />
      <Compile Include="Assets\EnemyScript.cs" />
+     <Compile Include="Assets\GameOverSceneManager.cs" />
      <Compile Include="Assets\GameplaySceneManager.cs" />
      <Compile Include="Assets\GridController.cs" />
      <Compile Include="Assets\GridGenerator.cs" />
@@ -93,6 +95,9 @@
      <Compile Include="Assets\Scripts\Scene managers\MainMenuSceneManager.cs" />
      <Compile Include="Assets\Scripts\Singleton\PrefabAttribute.cs" />
      <Compile Include="Assets\Scripts\Singleton\Singleton.cs" />
+     <Compile Include="Assets\SelectRandomAtClip.cs" />
+     <Compile Include="Assets\ShakeAdvancedScript.cs" />
+     <Compile Include="Assets\ShakeScript.cs" />
      <Compile Include="Assets\SnekController.cs" />
      <Compile Include="Assets\SonarFx\Reaktion\Utility\ConstantMotion.cs" />
      <Compile Include="Assets\SonarFx\Reaktion\Utility\JitterMotion.cs" />

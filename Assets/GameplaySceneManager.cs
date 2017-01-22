@@ -12,6 +12,11 @@ public class GameplaySceneManager : MonoBehaviour
     [SerializeField]
     private AudioClip sonarClip;
 
+    [SerializeField]
+    private GameObject canvas;
+    [SerializeField]
+    private Animator fading;
+
     private void Start()
     {
         AudioManager.Instance.AmbientSoundVolume = 0.3333f;
@@ -32,12 +37,18 @@ public class GameplaySceneManager : MonoBehaviour
         GameManager.Instance.DeathType = obj;
 
         // TODO
-        this.StartCoroutine(this.OpenGameOverSceneCorroutine(1.0f));
+        this.StartCoroutine(this.OpenGameOverSceneCorroutine(2f));
     }
 
     public IEnumerator OpenGameOverSceneCorroutine(float time)
     {
-        yield return new WaitForSeconds(time);
+        yield return new WaitForSeconds(time * 0.5f);
+
+        this.canvas.SetActive(true);
+        this.fading.Play("trans");
+
+        yield return new WaitForSeconds(time * 0.5f);
+
         SceneManager.LoadScene(3);
     }
 	
