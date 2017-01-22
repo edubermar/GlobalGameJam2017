@@ -19,6 +19,12 @@ public class PlayerController : MonoBehaviour
 
     private float forceAux = 0.003f;
 
+    public AudioClip death;
+    public AudioClip hit1;
+    public AudioClip hit2;
+    public AudioClip hit3;
+    public AudioClip flapSound;
+
     // Propiedades
     public float Life
     {
@@ -56,7 +62,7 @@ public class PlayerController : MonoBehaviour
 
             this.Life += 5.0f * Time.deltaTime;
 
-            if (this.transform.position.x < Camera.main.transform.position.x - Camera.main.aspect)
+            if (this.transform.position.x < (Camera.main.transform.position.x - Camera.main.aspect - 0.12f))
             {
                 this.life = 0.0f;
                 this.dead = true;
@@ -67,8 +73,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        if (this.life < 20.0f || other.collider.tag == "Snake") // Se ha muerto
+        if (this.life < 20.0f || other.collider.tag == "Snake" || other.collider.tag == "Spider") // Se ha muerto
         {
+            AudioManager.Instance.PlaySoundEffect(this.death);
+
             this.playerAnimator.SetTrigger("Death");
             this.playerRigidbody.Sleep();
 
@@ -90,6 +98,9 @@ public class PlayerController : MonoBehaviour
         }
         else // Choque no letal
         {
+            var hitSound = RandomUtil.NextInRange<AudioClip>(this.hit1, this.hit2, this.hit3);
+            AudioManager.Instance.PlaySoundEffect(hitSound);
+
             this.playerAnimator.SetTrigger("Hurt");
 
             this.Life -= 20.0f;
@@ -101,6 +112,11 @@ public class PlayerController : MonoBehaviour
             this.playerRigidbody.AddForce(repulsionVector.normalized * force, ForceMode2D.Impulse);
             this.StartCoroutine(this.DragAdjustmentCorroutine(0.5f));
         }
+    }
+
+    public void FlapSound()
+    {
+        AudioManager.Instance.PlaySoundEffect(this.flapSound);
     }
 
     private void OnCollisionExit2D(Collision2D other)

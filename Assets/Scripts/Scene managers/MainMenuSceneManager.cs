@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MainMenuSceneManager : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class MainMenuSceneManager : MonoBehaviour
     public CanvasGroup[] canvasGroupList;
     [SerializeField]
     public float crossFadeTime = 1.0f;
+    [SerializeField]
+    public Text highScoreText;
 
     [SerializeField]
     public AudioClip mainMenuMusic;
@@ -29,6 +32,8 @@ public class MainMenuSceneManager : MonoBehaviour
         // Reproducir música
         AudioManager.Instance.MusicVolume = 0.5f;
         AudioManager.Instance.PlayMusic(this.mainMenuMusic, 1.0f);
+
+        this.highScoreText.text = string.Format("High score: {0:0.00}", GameManager.Instance.GamePersistentData.DistanceRecord);
     }
 
     // Métodos de control
@@ -45,7 +50,7 @@ public class MainMenuSceneManager : MonoBehaviour
 	public IEnumerator StartGameCorroutine()
 	{
 		yield return new WaitForSeconds(0.5f);
-		SceneManager.LoadScene(1);
+		SceneManager.LoadScene(2);
 	}
 
     public void SwitchToCanvasGroup(int index)

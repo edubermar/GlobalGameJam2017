@@ -18,7 +18,9 @@ public sealed class GameManager : Singleton<GameManager>
     private GamePersistentData gamePersistentData;
 
     // Variables volátiles (se conservan entre cambios de escena, pero no son persistentes)
-    private int currentPoints = 0;
+    private float currentPoints = 0.0f;
+
+    public DeathType DeathType { get; set; }
 
     // ---- ---- ---- ---- ---- ---- ---- ----
     // Propiedades
@@ -47,12 +49,12 @@ public sealed class GameManager : Singleton<GameManager>
     }
 
     // Variables volátiles
-    public int CurrentPoints
+    public float CurrentPoints
     {
         get { return GameManager.Instance.currentPoints; }
         internal set
         {
-            int setValue = value > 0 ? value : 0;
+            float setValue = value > 0.0f ? value : 0.0f;
             if (GameManager.Instance.currentPoints != setValue)
             {
                 GameManager.Instance.currentPoints = setValue;
@@ -64,7 +66,7 @@ public sealed class GameManager : Singleton<GameManager>
     // ---- ---- ---- ---- ---- ---- ---- ----
     // Eventos
     // ---- ---- ---- ---- ---- ---- ---- ----
-    public event Action<int> OnCurrentPointsChanged = delegate { };
+    public event Action<float> OnCurrentPointsChanged = delegate { };
     public event Action<string> OnGameLanguageChanged = delegate { };
     
     // ---- ---- ---- ---- ---- ---- ---- ----
