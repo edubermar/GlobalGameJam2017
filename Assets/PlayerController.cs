@@ -14,6 +14,8 @@ public class PlayerController : MonoBehaviour
     private float life = 100.0f;
     private bool dead = false;
 
+    private float forceAux = 0.003f;
+
     // Propiedades
     public float Life
     {
@@ -49,7 +51,14 @@ public class PlayerController : MonoBehaviour
         PlayerController.OnPlayerMoved(this.transform.position);
 
         if (!this.dead)
-            this.Life += 7.5f * Time.deltaTime;
+            this.Life += 5f * Time.deltaTime;
+
+        if (this.transform.position.x < Camera.main.transform.position.x - Camera.main.aspect )
+        {
+            this.dead = true;
+
+            PlayerController.OnPlayerDied(DeathType.leftCamera);
+        }
 	}
 
     private void OnCollisionEnter2D(Collision2D other)
@@ -76,7 +85,7 @@ public class PlayerController : MonoBehaviour
             this.GetComponent<SpriteRenderer>().color = Color.red;
             Vector3 repulsionVector = this.transform.position - (Vector3)other.contacts[0].point;
 
-            float force = (200.0f + (100.0f - this.life) * 10.0f) * 0.008f;
+            float force = (200.0f + (100.0f - this.life) * 10.0f) * forceAux;
             this.playerRigidbody.AddForce(repulsionVector.normalized * force, ForceMode2D.Impulse);
             this.StartCoroutine(this.DragAdjustmentCorroutine(0.5f));
         }

@@ -183,7 +183,7 @@ CircleCollider2D:
   m_UsedByEffector: 0
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
-  m_Radius: 0.5
+  m_Radius: 0.45
 --- !u!50 &971976163
 Rigidbody2D:
   serializedVersion: 4
@@ -251,6 +251,7 @@ MonoBehaviour:
   lowerLimit: -3
   upperLimit: 3
   movementSpeed: 0.25
+  augmentSpeed: 0.01
   iterations: 4
   downsample: 1
   gridList:
@@ -656,11 +657,11 @@ MonoBehaviour:
   _mode: 1
   _direction: {x: 0, y: 0, z: 1}
   _origin: {x: 0, y: 0, z: 0}
-  _baseColor: {r: 0.2, g: 0.2, b: 0.2, a: 0}
+  _baseColor: {r: 0, g: 0, b: 0, a: 0}
   _waveColor: {r: 1, g: 1, b: 1, a: 0}
-  _waveAmplitude: 100
-  _waveExponent: 10
-  _waveInterval: 1
+  _waveAmplitude: 4
+  _waveExponent: 6
+  _waveInterval: 0.8
   _waveSpeed: 0.25
   _addColor: {r: 0, g: 0, b: 0, a: 1}
   _texture: {fileID: 0}

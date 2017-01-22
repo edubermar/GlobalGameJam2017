@@ -4,6 +4,7 @@ public enum DeathType
 {
     WallHit,
     Snake,
-    Spider
+    Spider,
+    leftCamera,
 
 }
