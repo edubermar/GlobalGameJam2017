@@ -250,7 +250,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lowerLimit: -3
   upperLimit: 3
-  movementSpeed: 0.25
+  movementSpeed: 0
   iterations: 4
   downsample: 1
   gridList:
@@ -628,7 +628,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1661928845
 Transform:
   m_ObjectHideFlags: 0

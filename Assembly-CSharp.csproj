@@ -93,12 +93,14 @@
      <Compile Include="Assets\Scripts\Scene managers\MainMenuSceneManager.cs" />
      <Compile Include="Assets\Scripts\Singleton\PrefabAttribute.cs" />
      <Compile Include="Assets\Scripts\Singleton\Singleton.cs" />
+     <Compile Include="Assets\SnekController.cs" />
      <Compile Include="Assets\SonarFx\Reaktion\Utility\ConstantMotion.cs" />
      <Compile Include="Assets\SonarFx\Reaktion\Utility\JitterMotion.cs" />
      <Compile Include="Assets\SonarFx\SonarFx\SonarFx.cs" />
      <Compile Include="Assets\SonarFx\SonarFx\SonarFxSwitcher.cs" />
      <Compile Include="Assets\SonarFx\SonarFxTest.cs" />
      <Compile Include="Assets\SonarFxController.cs" />
+     <Compile Include="Assets\SpidaController.cs" />
      <None Include="Assets\SonarFx\SonarFx\Shader\SonarFx.shader" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
