@@ -17,6 +17,8 @@ public class PlayerController : MonoBehaviour
     private float life = 100.0f;
     private bool dead = false;
 
+    private float forceAux = 0.003f;
+
     // Propiedades
     public float Life
     {
