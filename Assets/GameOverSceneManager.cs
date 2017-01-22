@@ -11,9 +11,12 @@ public class GameOverSceneManager : MonoBehaviour
 
     public Sprite[] deathSprites;
 
+    public AudioClip dolor;
+
     public void Awake()
     {
         AudioManager.Instance.StopAmbientSound();
+        AudioManager.Instance.PlaySoundEffect(this.dolor);
 
         this.scoreText.text = string.Format("{0:0.00}", GameManager.Instance.CurrentPoints);
 

@@ -10,6 +10,7 @@ public class GridGenerator : MonoBehaviour
     // Campos
     public SpriteRenderer wall;
     public List<SpriteRenderer> tiles;
+    public List<SpriteRenderer> props;
 
     public GameObject snek;
     public GameObject spida;
@@ -82,6 +83,45 @@ public class GridGenerator : MonoBehaviour
                     wall.transform.SetParent(this.transform, false);
 
 					wall.gameObject.layer = LayerMask.NameToLayer ("sonar");
+                }
+            }
+        }
+
+        for (int i = 0; i < this.grid.Width; i += step * 4)
+        {
+            for (int j = 0; j < this.grid.Height; j += step * 4)
+            {
+                bool foundSolid = true;
+                for (int x = i; x < i + 4; x += step)
+                {
+                    for (int y = j; y < j + 4; y += step)
+                    {
+                        if (!this.grid.GetItem(x, y))
+                        {
+                            foundSolid = false;
+                            break;
+                        }
+                    }
+                }
+
+                if (foundSolid && RandomUtil.Chance(0.4f))
+                {
+                    //int randomIndex = UnityEngine.Random.Range(0, this.props.Count);
+                    int randomIndex = RandomUtil.Chance(0.1f) ?
+                        (RandomUtil.Chance(0.1f) ? UnityEngine.Random.Range(9, 15) : UnityEngine.Random.Range(16, 19)) :
+                                      UnityEngine.Random.Range(0, 8);
+                    var prop = GameObject.Instantiate<SpriteRenderer>(this.props[randomIndex]);
+
+                    float itemWidth = (this.width / this.grid.Width) * step;
+                    float itemHeight = (this.height / this.grid.Height) * step;
+
+                    float hPosition = (i + step * 2).ToFloat().RemapTo(0, this.grid.Width - 1, -this.width * 0.5f, this.width * 0.5f);
+                    float vPosition = (j + step * 2).ToFloat().RemapTo(0, this.grid.Height - 1, -this.height * 0.5f, this.height * 0.5f);
+                    prop.transform.localPosition = new Vector2(hPosition, vPosition);
+                    prop.transform.localScale = new Vector3(itemWidth * 2.0f, itemHeight * 2.0f, 1.0f);
+                    prop.transform.SetParent(this.transform, false);
+
+                    prop.gameObject.layer = LayerMask.NameToLayer ("sonar");
                 }
             }
         }

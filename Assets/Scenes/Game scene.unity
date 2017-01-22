@@ -91,6 +91,127 @@ NavMeshSettings:
     cellSize: 0.16666667
     accuratePlacement: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &288068
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 288071}
+  - component: {fileID: 288070}
+  - component: {fileID: 288069}
+  m_Layer: 0
+  m_Name: Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &288069
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 288068}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f9db4bff61c4e8439e4a1b7514d9ccf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!82 &288070
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 288068}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 10a986a95a97ca94e9edf852ed9813fe, type: 3}
+  m_PlayOnAwake: 0
+  m_Volume: 0.3333
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!4 &288071
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 288068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 320.66806, y: 203.06082, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &60700457
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,7 +358,7 @@ MonoBehaviour:
   hit1: {fileID: 8300000, guid: b73fe522970e58e4596e5f3c9b237991, type: 3}
   hit2: {fileID: 8300000, guid: 8d1c501382bc8aa41ade4b486397bba6, type: 3}
   hit3: {fileID: 8300000, guid: 1f4253ddcdd7b5a49a7c4f564247813b, type: 3}
-  flapSound: {fileID: 8300000, guid: 6e76b88eac9759844ae0c0368ea4cd34, type: 3}
+  flapSound: {fileID: 8300000, guid: 274d94924a385774cbbc7fab3ab6bbdc, type: 3}
 --- !u!58 &971976162
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -406,6 +527,28 @@ MonoBehaviour:
   - {fileID: 212087250588682994, guid: a37f207ff86225643ac02039dbe35e45, type: 2}
   - {fileID: 212224320917635798, guid: 02768099e05832c41a5c2cf95b48d977, type: 2}
   - {fileID: 212707867305149058, guid: 2bbd2189a694a314d8d621768b97fc8f, type: 2}
+  props:
+  - {fileID: 212792193028513136, guid: 1e4990c2980d0ce46ae408356e098315, type: 2}
+  - {fileID: 212999369430876816, guid: 88f12cd690d055c48be64b2c737864b5, type: 2}
+  - {fileID: 212481570557874812, guid: 28fd86f115d14504ab573047281dca2c, type: 2}
+  - {fileID: 212929571158037850, guid: 9ffe64285694e6b469a58bea6d3ccad8, type: 2}
+  - {fileID: 212654779926450660, guid: a20f0c95aae8491459df6f6b2ce2798f, type: 2}
+  - {fileID: 212918482979751016, guid: 6081eaea7e1401044bdb19a5d818eb2c, type: 2}
+  - {fileID: 212372477476190878, guid: e3778fb6fe3f49f499a81567b8a90a84, type: 2}
+  - {fileID: 212735476802585008, guid: 96ff8c1830617db43bd5003fcdbd7aa2, type: 2}
+  - {fileID: 212869638408790826, guid: da4e872abc75d1b449833a424d5d91d1, type: 2}
+  - {fileID: 212477690964486992, guid: 129b3cf6637be8240bc3deafcbb34895, type: 2}
+  - {fileID: 212032532886803030, guid: df7d86bed900d1147b197ccd165b973f, type: 2}
+  - {fileID: 212868420461522028, guid: 398c5ea52362aa34b86224f0e89baba1, type: 2}
+  - {fileID: 212987305500774786, guid: e06e74109693e524f9d46b39f16c132c, type: 2}
+  - {fileID: 212187815388817940, guid: 8faf9dc4e66635747a9e4d0cced8a144, type: 2}
+  - {fileID: 212346413027634686, guid: 869262d25afac0845947cf47bada9476, type: 2}
+  - {fileID: 212143113564895298, guid: 391d242012887ca41b5f2974c49049dd, type: 2}
+  - {fileID: 212680024059317134, guid: f06cf4d2f255ded4db28870dd9a9760e, type: 2}
+  - {fileID: 212562872383006584, guid: adb82568d432f9c44afd578662a53e6d, type: 2}
+  - {fileID: 212359393845838868, guid: f87f7cca89aa18f4ca7c2ef02b2334a5, type: 2}
+  - {fileID: 212303854008126428, guid: 38394df778db4e54f9e76c6f026b3e7d, type: 2}
+  - {fileID: 212561802322109770, guid: e1e3b24a38ad054429486a73dc2968f1, type: 2}
   snek: {fileID: 1380313257264106, guid: b696445b1a4f83d44857a976267ea98b, type: 2}
   spida: {fileID: 1722842869019290, guid: 7c6b6a578eab85c40821fe5c7a6de3b7, type: 2}
   width: 1
@@ -468,6 +611,28 @@ MonoBehaviour:
   - {fileID: 212087250588682994, guid: a37f207ff86225643ac02039dbe35e45, type: 2}
   - {fileID: 212224320917635798, guid: 02768099e05832c41a5c2cf95b48d977, type: 2}
   - {fileID: 212707867305149058, guid: 2bbd2189a694a314d8d621768b97fc8f, type: 2}
+  props:
+  - {fileID: 212792193028513136, guid: 1e4990c2980d0ce46ae408356e098315, type: 2}
+  - {fileID: 212999369430876816, guid: 88f12cd690d055c48be64b2c737864b5, type: 2}
+  - {fileID: 212481570557874812, guid: 28fd86f115d14504ab573047281dca2c, type: 2}
+  - {fileID: 212929571158037850, guid: 9ffe64285694e6b469a58bea6d3ccad8, type: 2}
+  - {fileID: 212654779926450660, guid: a20f0c95aae8491459df6f6b2ce2798f, type: 2}
+  - {fileID: 212918482979751016, guid: 6081eaea7e1401044bdb19a5d818eb2c, type: 2}
+  - {fileID: 212372477476190878, guid: e3778fb6fe3f49f499a81567b8a90a84, type: 2}
+  - {fileID: 212735476802585008, guid: 96ff8c1830617db43bd5003fcdbd7aa2, type: 2}
+  - {fileID: 212869638408790826, guid: da4e872abc75d1b449833a424d5d91d1, type: 2}
+  - {fileID: 212477690964486992, guid: 129b3cf6637be8240bc3deafcbb34895, type: 2}
+  - {fileID: 212032532886803030, guid: df7d86bed900d1147b197ccd165b973f, type: 2}
+  - {fileID: 212868420461522028, guid: 398c5ea52362aa34b86224f0e89baba1, type: 2}
+  - {fileID: 212987305500774786, guid: e06e74109693e524f9d46b39f16c132c, type: 2}
+  - {fileID: 212187815388817940, guid: 8faf9dc4e66635747a9e4d0cced8a144, type: 2}
+  - {fileID: 212346413027634686, guid: 869262d25afac0845947cf47bada9476, type: 2}
+  - {fileID: 212143113564895298, guid: 391d242012887ca41b5f2974c49049dd, type: 2}
+  - {fileID: 212680024059317134, guid: f06cf4d2f255ded4db28870dd9a9760e, type: 2}
+  - {fileID: 212562872383006584, guid: adb82568d432f9c44afd578662a53e6d, type: 2}
+  - {fileID: 212359393845838868, guid: f87f7cca89aa18f4ca7c2ef02b2334a5, type: 2}
+  - {fileID: 212303854008126428, guid: 38394df778db4e54f9e76c6f026b3e7d, type: 2}
+  - {fileID: 212561802322109770, guid: e1e3b24a38ad054429486a73dc2968f1, type: 2}
   snek: {fileID: 1380313257264106, guid: b696445b1a4f83d44857a976267ea98b, type: 2}
   spida: {fileID: 1722842869019290, guid: 7c6b6a578eab85c40821fe5c7a6de3b7, type: 2}
   width: 1
@@ -618,6 +783,28 @@ MonoBehaviour:
   - {fileID: 212087250588682994, guid: a37f207ff86225643ac02039dbe35e45, type: 2}
   - {fileID: 212224320917635798, guid: 02768099e05832c41a5c2cf95b48d977, type: 2}
   - {fileID: 212707867305149058, guid: 2bbd2189a694a314d8d621768b97fc8f, type: 2}
+  props:
+  - {fileID: 212792193028513136, guid: 1e4990c2980d0ce46ae408356e098315, type: 2}
+  - {fileID: 212999369430876816, guid: 88f12cd690d055c48be64b2c737864b5, type: 2}
+  - {fileID: 212481570557874812, guid: 28fd86f115d14504ab573047281dca2c, type: 2}
+  - {fileID: 212929571158037850, guid: 9ffe64285694e6b469a58bea6d3ccad8, type: 2}
+  - {fileID: 212654779926450660, guid: a20f0c95aae8491459df6f6b2ce2798f, type: 2}
+  - {fileID: 212918482979751016, guid: 6081eaea7e1401044bdb19a5d818eb2c, type: 2}
+  - {fileID: 212372477476190878, guid: e3778fb6fe3f49f499a81567b8a90a84, type: 2}
+  - {fileID: 212735476802585008, guid: 96ff8c1830617db43bd5003fcdbd7aa2, type: 2}
+  - {fileID: 212869638408790826, guid: da4e872abc75d1b449833a424d5d91d1, type: 2}
+  - {fileID: 212477690964486992, guid: 129b3cf6637be8240bc3deafcbb34895, type: 2}
+  - {fileID: 212032532886803030, guid: df7d86bed900d1147b197ccd165b973f, type: 2}
+  - {fileID: 212868420461522028, guid: 398c5ea52362aa34b86224f0e89baba1, type: 2}
+  - {fileID: 212987305500774786, guid: e06e74109693e524f9d46b39f16c132c, type: 2}
+  - {fileID: 212187815388817940, guid: 8faf9dc4e66635747a9e4d0cced8a144, type: 2}
+  - {fileID: 212346413027634686, guid: 869262d25afac0845947cf47bada9476, type: 2}
+  - {fileID: 212143113564895298, guid: 391d242012887ca41b5f2974c49049dd, type: 2}
+  - {fileID: 212680024059317134, guid: f06cf4d2f255ded4db28870dd9a9760e, type: 2}
+  - {fileID: 212562872383006584, guid: adb82568d432f9c44afd578662a53e6d, type: 2}
+  - {fileID: 212359393845838868, guid: f87f7cca89aa18f4ca7c2ef02b2334a5, type: 2}
+  - {fileID: 212303854008126428, guid: 38394df778db4e54f9e76c6f026b3e7d, type: 2}
+  - {fileID: 212561802322109770, guid: e1e3b24a38ad054429486a73dc2968f1, type: 2}
   snek: {fileID: 1380313257264106, guid: b696445b1a4f83d44857a976267ea98b, type: 2}
   spida: {fileID: 1722842869019290, guid: 7c6b6a578eab85c40821fe5c7a6de3b7, type: 2}
   width: 1
@@ -680,6 +867,28 @@ MonoBehaviour:
   - {fileID: 212087250588682994, guid: a37f207ff86225643ac02039dbe35e45, type: 2}
   - {fileID: 212224320917635798, guid: 02768099e05832c41a5c2cf95b48d977, type: 2}
   - {fileID: 212707867305149058, guid: 2bbd2189a694a314d8d621768b97fc8f, type: 2}
+  props:
+  - {fileID: 212792193028513136, guid: 1e4990c2980d0ce46ae408356e098315, type: 2}
+  - {fileID: 212999369430876816, guid: 88f12cd690d055c48be64b2c737864b5, type: 2}
+  - {fileID: 212481570557874812, guid: 28fd86f115d14504ab573047281dca2c, type: 2}
+  - {fileID: 212929571158037850, guid: 9ffe64285694e6b469a58bea6d3ccad8, type: 2}
+  - {fileID: 212654779926450660, guid: a20f0c95aae8491459df6f6b2ce2798f, type: 2}
+  - {fileID: 212918482979751016, guid: 6081eaea7e1401044bdb19a5d818eb2c, type: 2}
+  - {fileID: 212372477476190878, guid: e3778fb6fe3f49f499a81567b8a90a84, type: 2}
+  - {fileID: 212735476802585008, guid: 96ff8c1830617db43bd5003fcdbd7aa2, type: 2}
+  - {fileID: 212869638408790826, guid: da4e872abc75d1b449833a424d5d91d1, type: 2}
+  - {fileID: 212477690964486992, guid: 129b3cf6637be8240bc3deafcbb34895, type: 2}
+  - {fileID: 212032532886803030, guid: df7d86bed900d1147b197ccd165b973f, type: 2}
+  - {fileID: 212868420461522028, guid: 398c5ea52362aa34b86224f0e89baba1, type: 2}
+  - {fileID: 212987305500774786, guid: e06e74109693e524f9d46b39f16c132c, type: 2}
+  - {fileID: 212187815388817940, guid: 8faf9dc4e66635747a9e4d0cced8a144, type: 2}
+  - {fileID: 212346413027634686, guid: 869262d25afac0845947cf47bada9476, type: 2}
+  - {fileID: 212143113564895298, guid: 391d242012887ca41b5f2974c49049dd, type: 2}
+  - {fileID: 212680024059317134, guid: f06cf4d2f255ded4db28870dd9a9760e, type: 2}
+  - {fileID: 212562872383006584, guid: adb82568d432f9c44afd578662a53e6d, type: 2}
+  - {fileID: 212359393845838868, guid: f87f7cca89aa18f4ca7c2ef02b2334a5, type: 2}
+  - {fileID: 212303854008126428, guid: 38394df778db4e54f9e76c6f026b3e7d, type: 2}
+  - {fileID: 212561802322109770, guid: e1e3b24a38ad054429486a73dc2968f1, type: 2}
   snek: {fileID: 1380313257264106, guid: b696445b1a4f83d44857a976267ea98b, type: 2}
   spida: {fileID: 1722842869019290, guid: 7c6b6a578eab85c40821fe5c7a6de3b7, type: 2}
   width: 1
@@ -841,6 +1050,28 @@ MonoBehaviour:
   - {fileID: 212087250588682994, guid: a37f207ff86225643ac02039dbe35e45, type: 2}
   - {fileID: 212224320917635798, guid: 02768099e05832c41a5c2cf95b48d977, type: 2}
   - {fileID: 212707867305149058, guid: 2bbd2189a694a314d8d621768b97fc8f, type: 2}
+  props:
+  - {fileID: 212792193028513136, guid: 1e4990c2980d0ce46ae408356e098315, type: 2}
+  - {fileID: 212999369430876816, guid: 88f12cd690d055c48be64b2c737864b5, type: 2}
+  - {fileID: 212481570557874812, guid: 28fd86f115d14504ab573047281dca2c, type: 2}
+  - {fileID: 212929571158037850, guid: 9ffe64285694e6b469a58bea6d3ccad8, type: 2}
+  - {fileID: 212654779926450660, guid: a20f0c95aae8491459df6f6b2ce2798f, type: 2}
+  - {fileID: 212918482979751016, guid: 6081eaea7e1401044bdb19a5d818eb2c, type: 2}
+  - {fileID: 212372477476190878, guid: e3778fb6fe3f49f499a81567b8a90a84, type: 2}
+  - {fileID: 212735476802585008, guid: 96ff8c1830617db43bd5003fcdbd7aa2, type: 2}
+  - {fileID: 212869638408790826, guid: da4e872abc75d1b449833a424d5d91d1, type: 2}
+  - {fileID: 212477690964486992, guid: 129b3cf6637be8240bc3deafcbb34895, type: 2}
+  - {fileID: 212032532886803030, guid: df7d86bed900d1147b197ccd165b973f, type: 2}
+  - {fileID: 212868420461522028, guid: 398c5ea52362aa34b86224f0e89baba1, type: 2}
+  - {fileID: 212987305500774786, guid: e06e74109693e524f9d46b39f16c132c, type: 2}
+  - {fileID: 212187815388817940, guid: 8faf9dc4e66635747a9e4d0cced8a144, type: 2}
+  - {fileID: 212346413027634686, guid: 869262d25afac0845947cf47bada9476, type: 2}
+  - {fileID: 212143113564895298, guid: 391d242012887ca41b5f2974c49049dd, type: 2}
+  - {fileID: 212680024059317134, guid: f06cf4d2f255ded4db28870dd9a9760e, type: 2}
+  - {fileID: 212562872383006584, guid: adb82568d432f9c44afd578662a53e6d, type: 2}
+  - {fileID: 212359393845838868, guid: f87f7cca89aa18f4ca7c2ef02b2334a5, type: 2}
+  - {fileID: 212303854008126428, guid: 38394df778db4e54f9e76c6f026b3e7d, type: 2}
+  - {fileID: 212561802322109770, guid: e1e3b24a38ad054429486a73dc2968f1, type: 2}
   snek: {fileID: 1380313257264106, guid: b696445b1a4f83d44857a976267ea98b, type: 2}
   spida: {fileID: 1722842869019290, guid: 7c6b6a578eab85c40821fe5c7a6de3b7, type: 2}
   width: 1
@@ -890,6 +1121,28 @@ MonoBehaviour:
   - {fileID: 212087250588682994, guid: a37f207ff86225643ac02039dbe35e45, type: 2}
   - {fileID: 212224320917635798, guid: 02768099e05832c41a5c2cf95b48d977, type: 2}
   - {fileID: 212707867305149058, guid: 2bbd2189a694a314d8d621768b97fc8f, type: 2}
+  props:
+  - {fileID: 212792193028513136, guid: 1e4990c2980d0ce46ae408356e098315, type: 2}
+  - {fileID: 212999369430876816, guid: 88f12cd690d055c48be64b2c737864b5, type: 2}
+  - {fileID: 212481570557874812, guid: 28fd86f115d14504ab573047281dca2c, type: 2}
+  - {fileID: 212929571158037850, guid: 9ffe64285694e6b469a58bea6d3ccad8, type: 2}
+  - {fileID: 212654779926450660, guid: a20f0c95aae8491459df6f6b2ce2798f, type: 2}
+  - {fileID: 212918482979751016, guid: 6081eaea7e1401044bdb19a5d818eb2c, type: 2}
+  - {fileID: 212372477476190878, guid: e3778fb6fe3f49f499a81567b8a90a84, type: 2}
+  - {fileID: 212735476802585008, guid: 96ff8c1830617db43bd5003fcdbd7aa2, type: 2}
+  - {fileID: 212869638408790826, guid: da4e872abc75d1b449833a424d5d91d1, type: 2}
+  - {fileID: 212477690964486992, guid: 129b3cf6637be8240bc3deafcbb34895, type: 2}
+  - {fileID: 212032532886803030, guid: df7d86bed900d1147b197ccd165b973f, type: 2}
+  - {fileID: 212868420461522028, guid: 398c5ea52362aa34b86224f0e89baba1, type: 2}
+  - {fileID: 212987305500774786, guid: e06e74109693e524f9d46b39f16c132c, type: 2}
+  - {fileID: 212187815388817940, guid: 8faf9dc4e66635747a9e4d0cced8a144, type: 2}
+  - {fileID: 212346413027634686, guid: 869262d25afac0845947cf47bada9476, type: 2}
+  - {fileID: 212143113564895298, guid: 391d242012887ca41b5f2974c49049dd, type: 2}
+  - {fileID: 212680024059317134, guid: f06cf4d2f255ded4db28870dd9a9760e, type: 2}
+  - {fileID: 212562872383006584, guid: adb82568d432f9c44afd578662a53e6d, type: 2}
+  - {fileID: 212359393845838868, guid: f87f7cca89aa18f4ca7c2ef02b2334a5, type: 2}
+  - {fileID: 212303854008126428, guid: 38394df778db4e54f9e76c6f026b3e7d, type: 2}
+  - {fileID: 212561802322109770, guid: e1e3b24a38ad054429486a73dc2968f1, type: 2}
   snek: {fileID: 1380313257264106, guid: b696445b1a4f83d44857a976267ea98b, type: 2}
   spida: {fileID: 1722842869019290, guid: 7c6b6a578eab85c40821fe5c7a6de3b7, type: 2}
   width: 1
