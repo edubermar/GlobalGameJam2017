@@ -272,10 +272,8 @@ public class GridGenerator : MonoBehaviour
                             CheckColumn = true;
 					
 
-                        if (nextToEnemy == 1 && RandomUtil.Chance(0.01f) && j > 15 && j < this.grid.Height - 15
-                        && (CheckColumnUp || CheckColumnRight || CheckColumnDown || CheckColumnLeft))
+                        if (nextToEnemy == 1 && RandomUtil.Chance(0.01f) && j < 32 && j > 10 && (CheckColumnUp || CheckColumnRight || CheckColumnDown || CheckColumnLeft))
                         {
-                            {
                                 var selectedEnemy = RandomUtil.NextInRange<GameObject>(this.snek, this.spida);
                                 var enemy = GameObject.Instantiate<GameObject>(selectedEnemy);
 
@@ -288,24 +286,22 @@ public class GridGenerator : MonoBehaviour
 
                                 enemy.gameObject.layer = LayerMask.NameToLayer("sonar");
 
-                                /*switch (EnemyCase(neigboursList))
-                            {
-                                // El enemigo tendrá un muro arriba
-                                case 0:
-                                    break;
-                                // El enemigo tendrá un muro a la izquierda
-                                case 1:
-                                    break;
-                                // El enemigo tendrá un muro a la derecha
-                                case 2:
-                                    break;
-                                // El enemigo tendrá un muro abajo
-                                case 3:
-                                    break;
-                                default:
-                                    break;
-                            }*/
-                            }
+                        }
+
+                        if (nextToEnemy == 1 && RandomUtil.Chance(0.01f) && j > 32 && j < 54 && (CheckColumnUp || CheckColumnRight || CheckColumnDown || CheckColumnLeft))
+                        {
+                            var selectedEnemy = RandomUtil.NextInRange<GameObject>(this.snek, this.spida);
+                            var enemy = GameObject.Instantiate<GameObject>(selectedEnemy);
+
+                            float hPosition = i.ToFloat().RemapTo(0, this.grid.Width - 1, -this.width * 0.5f, this.width * 0.5f);
+                            float vPosition = j.ToFloat().RemapTo(0, this.grid.Height - 1, -this.height * 0.5f, this.height * 0.5f);
+
+                            enemy.transform.localPosition = new Vector2(hPosition, vPosition);
+                            enemy.transform.localScale.Scale(new Vector3(1f, -1f, 1f));
+                            enemy.transform.SetRotationEulerZ(90f);
+                            enemy.transform.SetParent(this.transform, false);
+
+                            enemy.gameObject.layer = LayerMask.NameToLayer("sonar");
 
                         }
                         holeCount = 0;
